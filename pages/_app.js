@@ -10,7 +10,7 @@ import '../styles/categ.css';
 import '../styles/footer.css';
 import Layout from '../components/Layout';
 import ApolloProv from '../components/Graphql/ApolloProv';
-import { ChakraProvider } from "@chakra-ui/react"
+/* import { ChakraProvider } from "@chakra-ui/react" */
 import {fontAW} from '../fontawsome';
 fontAW();
 function MyApp({ Component, pageProps }) {
