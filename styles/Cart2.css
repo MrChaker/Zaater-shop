@@ -1,0 +1,181 @@
+.Cart{
+    display: flex;
+    align-items: flex-start;
+}
+.Cart > div:first-child{
+    width: 100%;
+    height: 70vh;
+}
+.Cart > div:first-child p{
+    margin: 100px 0 30px 0;
+    width: 100%;
+    
+    text-align: center;
+    font-size: 2rem;
+}
+.btn-link{
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+.Orders{
+    width: 55%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.Order-grid{
+    display: grid;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+   /*  grid-template-columns: repeat(4, 0.25fr) ; */
+    grid-gap: 10px;
+}
+.Order-grid img{
+    height: 180px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.Order-grid h3{
+    margin-bottom: 10px;
+}
+.Order-grid h3,
+.Order-grid p{
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+.Obtn{
+    font-size: 1.15rem;
+}
+.seperator{
+    grid-column: 1/5;
+    height: 1px;
+    background-color: var(--more-shadow);
+    width: 100%;
+}
+.nameAndimage{
+    text-align: center;
+}
+.blank{
+    width: 30%;
+}
+.cart-sumary{
+    position: fixed;
+    right: 5%;
+    width: 30%;
+    margin: 80px auto;
+    font-size: 1.8rem;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+.cart-sumary .Pricing{
+    margin: 0 auto 20px auto;
+    text-align: right;
+    width: fit-content;
+}
+.cart-sumary span{
+    font-size: 1.3rem;
+}
+
+.cart-sumary .Pricing div:last-child{
+    width: 100%;
+    border-top: 1px solid var(--shadow);
+    padding-top:  10px;
+    margin-top:  10px;
+}  
+@media screen and (max-width: 1000px) {
+    .cart-sumary{
+        font-size: 1.5rem;
+    }
+    .cart-sumary span{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 850px) {
+    .Cart{
+        flex-direction: column;
+    }
+    .Cart > div:first-child{
+        height: fit-content;
+    }
+    .Cart > div:first-child p{
+        margin: 30px 0 30px 0;
+    }
+    .Orders,
+    .cart-sumary{
+        width: 80%;
+        position: static;
+    }
+    .cart-sumary{
+        font-size: 1.5rem;
+        flex-direction: row-reverse;
+    }
+    .cart-sumary .Pricing{
+        margin: 0 0 0 auto;
+    }
+    .cart-sumary span{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .Orders,
+    .cart-sumary{
+        width: 95%;
+    }
+    .Order-grid{
+        grid-gap: 5px
+    }
+    .Order-grid img{
+        height: 140px;
+    }
+    .Order-grid h3{
+        margin-bottom: 5px;
+    }
+    .nameAndimage h3{
+        margin: -5px 0;
+    }
+    .Order-grid h3,
+    .Order-grid p{
+        font-size: 1.1rem;
+    }
+    .Obtn{
+        font-size: 1rem;
+    }
+    .cart-sumary{
+        flex-direction: column;
+        font-size: 1.5rem;
+    }
+    .cart-sumary span{
+        font-size: 1.15rem;
+    }
+    .cart-sumary .Pricing{
+        margin: -50px auto 30px auto;
+    }
+}
+@media screen and (max-width: 482px) {
+    
+    .Order-grid img{
+        height: 120px;
+    }
+    .Order-grid h3{
+        margin-bottom: 5px;
+    }
+    .nameAndimage h3{
+        margin: -5px 0;
+    }
+    .Order-grid h3,
+    .Order-grid p{
+        font-size: 4.5vw;
+        font-weight: 400;
+    }
+    .Obtn{
+        font-size: 3.6vw;
+    }
+}

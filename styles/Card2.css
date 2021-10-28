@@ -1,0 +1,127 @@
+.item {
+    
+    margin: 30px;
+    width: 240px;
+    height: 380px;
+    background: #fff;
+    -webkit-box-shadow: 2px 0  20px var(--more-shadow);
+    box-shadow: 2px 0  20px var(--more-shadow);
+    
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 1s;
+  }
+  
+  .item .img-box {
+    height: 75%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: 1s;
+  }
+  
+  .item .img-box img {
+      height: 100%;
+    display: block;
+    width: 100%;
+    margin: 0 auto 0;
+    transition: 1s;
+  }
+  
+  .details {
+    color: var(--txt-white);
+    width: 100%;
+    background: var(--pri-theme-dark);
+    padding: 10px;
+    padding-top: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 0  0 var(--more-shadow);
+    box-shadow: 0 0  0 var(--more-shadow);
+    transition: 1s;
+
+  }
+  .details-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .details h2 {
+    margin: 0;
+    padding: 20px 20px 0 20px;
+    width: 100%;
+    font-size: 20px;
+  }
+  
+  .details  span {
+      display: block;
+      padding: 0 20px;
+      font-size: 16px;
+      color: #bbb;
+      font-weight: normal;
+  }
+  
+  .details .price {
+    padding: 20px 20px 0 20px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  
+  
+  .item a {
+    display: block;
+    padding: 5px;
+    color: #fff;
+    margin: 15px 0 0;
+    background: transparent;
+    border: 2px solid white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: 1s;
+  }
+  
+  
+  
+  
+  .item:hover .details {
+    transform: translateY(-35%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    transition: 1s;
+  }
+  
+  .item:hover .img-box img{
+    filter: blur(1px) brightness(0.7);
+    transition: 1s;
+  }
+  @media screen and (max-width: 660px ) {
+    .card-container{
+      width: 100%;
+    }
+    .item {
+      margin: 30px 10px;
+      width: 180px;
+      height: 280px;
+  }
+  .item .img-box{
+    height: 80%;
+}
+  .details {
+    transform: translateY(-12px)
+  }
+    .item:hover .details {
+      transform: translateY(-52%);
+    }  
+}
+  
+  

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    --shadow : rgba(0,0,0,0.2);
+    --edge : 40px; 
+    --more-shadow : #0000009c;
+    --pri-theme : rgb(16 0 41) ;
+    --pri-theme-dark: rgb(8 0 20);
+    --blue : rgb(23 78 181);
+    --txt-white : #fff;
+    --txt-black : rgb(34, 33, 33);
+    --err : rgb(185 20 20);
+    --bg-white : #f1f1f1;
+    font-family: 'Quicksand', sans-serif;
+    font-family: 'Cairo', sans-serif;
+    --o-size : 1.5rem;
+    --right : 25%;
+    --top : 5%;
+}
+
+#root{
+    overflow-x: hidden;
+    padding-top: 101px;
+
+}
+a{
+    text-decoration: none;
+    color: unset;
+}
+.swal-button,
+.swal-button:hover{
+    background-color: var(--pri-theme);
+}
+.swal-text{
+    color: var(--txt-black);
+    text-align: center;
+    font-size: 1.7rem;
+}
+.section_title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line{
+    height: 2px;
+    width: 35%;
+    background-color: var(--txt-black);
+    border-radius: 50%;
+}
+.line:last-child{
+    transform: translateX(30px);
+}
+
+.card-container{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    --card-size : 20px;
+    font-size: 1em;
+
+}
+@media screen and (max-width: 520px) {
+    .card-container{
+        width: 100%;
+        font-size: 0.9em;
+    }
+}
+button svg{
+    margin-right: 8px;
+}
