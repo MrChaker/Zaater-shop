@@ -59,20 +59,6 @@ const Sidebar = ()=>{
 }
 const CategNavigation  = (props) => {
     const {  data } = useQuery(LOAD_Categories);
-    const dataa = [
-        {
-            name:'pant',
-            arabic:'pann'
-        },
-        {
-            name: 'shirs',
-            arabic:'hhhrr'
-        },
-        {
-            name: 'shirs',
-            arabic:'hhh'
-        }
-]
     const [ categories, setCategories]= useState([]);
     useEffect(()=>{
         if(data){
@@ -126,8 +112,6 @@ const Products = (props) => {
                         sorter = new Reverse(copy);
                         break;
                 }
-                console.log(sorter)
-
                 if(categ == "All" || categ == "all"){
                     sorter.Sort();  
                     setProducts(copy);
