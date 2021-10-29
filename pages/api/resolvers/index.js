@@ -17,11 +17,11 @@ export const resolvers = {
                         category: 'slow',
                         images: [
                             {
-                                path: '/images/zaaterchemise.jpg',
+                                path: '/zaaterchemise.jpg',
                                 color: 'blue'
                             },
                             {
-                                path: '/images/zaaterchemise.jpg',
+                                path: '/zaaterchemise.jpg',
                                 color: 'red'
                             }
                         ]
