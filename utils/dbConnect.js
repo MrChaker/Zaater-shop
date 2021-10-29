@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Product } from '../models/product';
+
 
 
 const connection = {}
