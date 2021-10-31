@@ -12,10 +12,10 @@ export default async function Connect(){
         useUnifiedTopology: true,
         useNewUrlParser : true
     });
-    console.log('connected..')
+    
     connection.isConnected = db.connection.readyState
     console.log(db.connection.readyState);
-    console.log(db.models)
+    console.log(process.env.MONGO_URI)
     
     
 }

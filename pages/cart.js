@@ -40,6 +40,7 @@ const CartList = () => {
                 <div> 
                 <p>
                      السّلة فارغة </p> 
+                     
                      <Link href="category/All">            
                         <a className="btn-link"><Button
                                 normal

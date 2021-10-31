@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import Card2 from "../../components/commun/Card2"
-
+import Image from "next/image";
+import Head from "next/head"
 import { LOAD_Categories, LOAD_Products } from '../../graphql/Queries';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +23,7 @@ const Store = () => {
                     <Sidebar />
                     <div className='main'>
                         <div className="ad-background">
-                            <img src="/images/advertise.jpg" alt="ad" />
+                            <Image src="/images/advertise.jpg" alt="ad" layout='responsive' width='100%' height='100%'/>
                         </div>
                     </div>
                 </div>   
@@ -95,7 +96,7 @@ const Products = (props) => {
     const router = useRouter()
     const { categ } = router.query
     
-    const { data } = useQuery(LOAD_Products);
+    const { data, loading } = useQuery(LOAD_Products);
     const[products, setProducts]= useState([]);
         useEffect(()=>{    
             if(data){
@@ -125,7 +126,8 @@ const Products = (props) => {
     return ( 
         <>
             <div className="card-container">
-                {/* {Pending && <FontAwesomeIcon icon='spinner' size='3x' spin/>} */} 
+                
+                {loading && <FontAwesomeIcon icon='spinner' size='3x' spin/>} 
                 { products.map((product,i)=>(
                     
                         <Card2   
@@ -143,6 +145,4 @@ const Products = (props) => {
         </>
      ); 
 } 
- 
-
 export default Store;

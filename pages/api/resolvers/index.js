@@ -1,12 +1,11 @@
-
+import { Product } from '../../../models/product';
 export const resolvers = {
     Query : {
-        getProducts : /* async () =>{
+        getProducts : async () =>{
            const products = await Product.find()
-           console.log(products)
              return products
-        } */
-             () => {
+        }
+             /* () => {
                  
                  return [
                     {
@@ -26,8 +25,8 @@ export const resolvers = {
                             }
                         ]
                     }
-                 ]
+                 ] 
         
-             }
+             }*/
     }
 }
