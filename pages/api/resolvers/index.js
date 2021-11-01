@@ -1,32 +1,16 @@
 import { Product } from '../../../models/product';
+import { Category } from '../../../models/category';
+
 export const resolvers = {
     Query : {
         getProducts : async () =>{
            const products = await Product.find()
              return products
+        },
+        getCategories : async ()=>{
+            const result = await Category.find()
+            return result
         }
-             /* () => {
-                 
-                 return [
-                    {
-                        id: 'hoh',
-                        price : 106, 
-                        times_ordered : 2,
-                        name : 'Cahker',
-                        category: 'slow',
-                        images: [
-                            {
-                                path: '/zaaterchemise.jpg',
-                                color: 'blue'
-                            },
-                            {
-                                path: '/zaaterchemise.jpg',
-                                color: 'red'
-                            }
-                        ]
-                    }
-                 ] 
-        
-             }*/
+             
     }
 }

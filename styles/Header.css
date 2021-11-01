@@ -280,6 +280,7 @@
         margin-right: 00vw;
         --height: 370px;
         --second-height: 320px;
+        margin-top: 20px;
        /*  position: absolute;
         top: 70%;
         right:27% */
@@ -298,6 +299,9 @@
     }
 }
 @media  screen and (max-width : 463px) {
+    .back-container {
+        width: 95%;
+    }
     .text-cont h1 {
         font-size: 2.7rem;
     }

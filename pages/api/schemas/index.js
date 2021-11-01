@@ -13,7 +13,12 @@ export const typeDefs = gql`
         category: String,
         images: [ImageType]
     }
+    type CategoryType{
+        name: String,
+        arabic: String
+    }
     type Query{
-        getProducts: [ProductType]
+        getProducts: [ProductType],
+        getCategories : [CategoryType]
     }
 `

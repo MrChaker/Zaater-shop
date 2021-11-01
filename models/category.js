@@ -5,4 +5,4 @@ const CategorySchema = new Schema({
     arabic : String
 },{ timestamps : true })
 
-export const Category = mongoose.model('Category', CategorySchema);
+export const Category = mongoose.model.Category || mongoose.model('Category', CategorySchema);
