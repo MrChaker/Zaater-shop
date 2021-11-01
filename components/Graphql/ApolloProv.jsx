@@ -7,7 +7,7 @@ const ApolloProv = (props) => {
      
     
     const client = new ApolloClient({
-        uri : `http://localhost:3000/api/graphql`,
+        uri : `${process.env.PORT}/api/graphql`,
         cache: new InMemoryCache()
         
     })
