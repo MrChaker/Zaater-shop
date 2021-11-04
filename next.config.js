@@ -1,6 +1,9 @@
 module.exports = {
   swcMinify: true,
   reactStrictMode: true,
+  env: {
+    PORT: '',
+  },
   async rewrites() {
     return [
       {
