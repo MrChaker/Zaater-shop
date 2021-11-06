@@ -6,6 +6,7 @@ import Header from '../components/homePage/Header';
 import MostSold from '../components/homePage/MostSold';
 
 export default function Home() {
+  
   return (
     <div className="Hero">
        <Header />

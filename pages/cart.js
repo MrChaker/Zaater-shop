@@ -40,7 +40,7 @@ const CartList = () => {
                 <div> 
                 <p>
                      السّلة فارغة </p> 
-                <img src="/images/empty.png" alt="ecart" />
+                
                      <Link href="category/All">            
                         <a className="btn-link"><Button
                                 normal

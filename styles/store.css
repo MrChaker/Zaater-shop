@@ -96,3 +96,9 @@
     border-radius: 5px;
     width: 100%;
 }
+@media  screen and (max-width : 900px ) {
+    .sideBar{
+        --basic-size : 16px
+    }
+    
+}

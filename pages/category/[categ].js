@@ -23,7 +23,7 @@ const Store = () => {
                     <Sidebar />
                     <div className='main'>
                         <div className="ad-background">
-                            <Image src="/images/advertise.jpg" alt="ad" layout='responsive' width='100%' height='100%'/>
+                            {/* <Image src="/images/advertise.jpg" alt="ad" layout='responsive' width='100%' height='100%'/> */}
                         </div>
                     </div>
                 </div>   
@@ -72,7 +72,7 @@ const CategNavigation  = (props) => {
             <div className={ props.on ? ' sidebar categ on ' : 'sidebar categ'}>
                 <div onClick={props.off}>
                     <FontAwesomeIcon icon='times' />
-                </div>
+               </div>
                 <div >
                         <Link href="All">
                             <a>
@@ -122,7 +122,7 @@ const Products = (props) => {
                     setProducts(copy);
                 }
             }    
-        }, [data, categ,props.Sort])
+        }, [categ,props.Sort])
     return ( 
         <>
             <div className="card-container">
