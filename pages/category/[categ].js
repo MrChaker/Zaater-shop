@@ -63,6 +63,7 @@ const CategNavigation  = (props) => {
     const [ categories, setCategories]= useState([]);
     useEffect(()=>{
         if(data){
+            console.log(data)
             setCategories(data.getCategories);
             /* setCategories(data); */
         }
