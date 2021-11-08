@@ -8,7 +8,8 @@ export const resolvers = {
              return products
         },
         getCategories : async ()=>{
-            const result = await Category.find()
+            const result = await Category.find();
+            console.log(result)
             return result
         }
              

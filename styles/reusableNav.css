@@ -1,6 +1,6 @@
 
 nav{
-    padding: 15px 40px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -98,7 +98,7 @@ nav ul li:hover{
 .scrolledNav{
   box-shadow: 2px 0 5px var(--shadow);
   position: fixed;
-  padding: 20px 40px;
+  padding: 12px 40px;
 }
 @media screen and (max-width : 660px) {
   .scrolledNav{

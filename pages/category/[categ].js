@@ -59,7 +59,7 @@ const Sidebar = ()=>{
     )
 }
 const CategNavigation  = (props) => {
-    const {  data } = useQuery(LOAD_Categories);
+    const { loading,  data  } = useQuery(LOAD_Categories);
     const [ categories, setCategories]= useState([]);
     useEffect(()=>{
         if(data){
@@ -67,9 +67,12 @@ const CategNavigation  = (props) => {
             setCategories(data.getCategories);
             /* setCategories(data); */
         }
-    },[])
+    },[loading]) ;
+    if (loading) return <FontAwesomeIcon icon='spinner' size='3x' spin/>;
+
     return ( 
         <>
+            
             <div className={ props.on ? ' sidebar categ on ' : 'sidebar categ'}>
                 <div onClick={props.off}>
                     <FontAwesomeIcon icon='times' />
@@ -99,7 +102,7 @@ const Products = (props) => {
     
     const { data, loading } = useQuery(LOAD_Products);
     const[products, setProducts]= useState([]);
-        useEffect(()=>{    
+    useEffect(()=>{    
             if(data){
                 var copy = Array.from(data.getProducts);
                 let sorter = new Sorter(copy);
@@ -123,7 +126,7 @@ const Products = (props) => {
                     setProducts(copy);
                 }
             }    
-        }, [categ,props.Sort])
+    }, [categ,props.Sort,loading])
     return ( 
         <>
             <div className="card-container">

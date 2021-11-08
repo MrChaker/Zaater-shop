@@ -90,10 +90,6 @@
     margin-bottom: 20px;
     transition: 1s;
   }
-  
-  
-  
-  
   .item:hover .details {
     transform: translateY(-35%);
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
@@ -122,6 +118,36 @@
     .item:hover .details {
       transform: translateY(-52%);
     }  
+}
+@media screen and (max-width: 420px ) {
+  .item {
+    width: 130px;
+    height: 210px;
+}
+  .item .img-box{
+    height: 80%;
+  }
+  .details {
+    transform: translateY(-12px)
+  }
+  .details h2,
+  .details .price{
+    padding: 20px 12px 0;
+    font-size: 15px;
+  }
+  .details span {
+    padding: 0 3px;
+    font-size: 10px;
+  }
+  .item a {
+    padding: 0px;
+    margin: 15px 0 ;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .item:hover .details {
+    transform: translateY(-52%);
+  }  
 }
   
   
