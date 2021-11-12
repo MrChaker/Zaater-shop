@@ -1,0 +1,127 @@
+.item {
+    
+    margin: 0 0 30px 0;
+    width: 17vw;
+    height: 27vw;
+    background: #fff;
+    -webkit-box-shadow: 2px 0  20px var(--more-shadow);
+    box-shadow: 2px 0  20px var(--more-shadow);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 1s;
+  }
+  
+  .item .img-box {
+    height: 75%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: 1s;
+  }
+  
+  .item .img-box img {
+      height: 100%;
+    display: block;
+    width: 100%;
+    margin: 0 auto 0;
+    transition: 1s;
+  }
+  
+  .details {
+    color: var(--txt-white);
+    width: 100%;
+    background-image: linear-gradient(124deg, var(--pri-theme), #644545);
+    padding: 20px;
+    padding-top: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 0  0 var(--more-shadow);
+    box-shadow: 0 0  0 var(--more-shadow);
+    transition: 1s;
+    --card-txt : 1.8vw;
+  }
+  .details-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+  }
+  
+  
+  .details h2 {
+    width: 100%;
+    font-size: var(--card-txt);
+  }
+  
+  .details  span {
+      display: block;
+      font-size: calc(var(--card-txt) - 0.2vw );
+      color: #bbb;
+      font-weight: normal;
+  }
+  
+  .details .price {
+    font-weight: bold;
+    font-size: var(--card-txt);
+  }
+  .item a {
+    display: block;
+    padding: 5px;
+    color: #fff;
+    margin: 15px 0 ;
+    background: transparent;
+    border: 2px solid white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: 1s;
+    font-size: calc(var(--card-txt) - 0.3vw);
+  }
+  .item a:hover {
+    background-image: linear-gradient(124deg, var(--pri-theme), #e71010);
+  }
+  .item:hover .details {
+    transform: translateY(-35%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    transition: 1s;
+  }
+  
+  .item:hover .img-box img{
+    filter: blur(1px) brightness(0.7);
+    transition: 1s;
+  }
+  @media screen and (max-width: 850px ) {
+    .item {
+      width: 28.5vw;
+      height: 40vw;
+  }
+  .details{
+    --card-txt : 2.2vw;
+  }
+}
+@media screen and (max-width: 630px ) {
+  .item {
+    width: 43.5vw;
+    height: 62vw;
+}
+  .details{
+    --card-txt : 3.4vw;
+  }
+}
+@media screen and (max-width: 350px ) {
+  .item{
+    height: 70vw;
+  }
+  .details{
+    --card-txt : 4.4vw;
+    padding: 12px;
+  }
+  .details-text{
+    padding-top: 0;
+  }
+  .item .img-box{
+    height: 68%;
+  }
+}
+  
+  
