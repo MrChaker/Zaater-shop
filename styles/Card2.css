@@ -37,7 +37,7 @@
     -webkit-box-shadow: 0 0  0 var(--more-shadow);
     box-shadow: 0 0  0 var(--more-shadow);
     transition: 1s;
-    --card-txt : 1.8vw;
+    --card-txt : 1.55vw;
   }
   .details-text{
     display: flex;
@@ -92,11 +92,11 @@
   }
   @media screen and (max-width: 850px ) {
     .item {
-      width: 28.5vw;
-      height: 40vw;
+      width: 28vw;
+      height: 42vw;
   }
   .details{
-    --card-txt : 2.2vw;
+    --card-txt : 2.3vw;
   }
 }
 @media screen and (max-width: 630px ) {
