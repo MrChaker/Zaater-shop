@@ -133,7 +133,7 @@ const Products = (props) => {
         <>
             <div className="card-container">
                 
-                {loading && <FontAwesomeIcon icon='spinner' size='3x' spin/>} 
+                {loading && <FontAwesomeIcon  icon='spinner' size='3x' spin/>} 
                 { products.map((product,i)=>(
                     
                         <Card2   

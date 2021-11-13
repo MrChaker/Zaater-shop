@@ -8,8 +8,12 @@
     --shadow : rgba(0,0,0,0.2);
     --edge : 40px; 
     --more-shadow : #0000009c;
-    --pri-theme : rgb(16 0 41) ;
+    --pri-theme : #28053C;
     --pri-theme-dark: rgb(8 0 20);
+    --sec-theme : #e402dd;
+    --sec-theme-dark :#231fecd1;
+    --deg : 0deg;
+    --gradient : linear-gradient(118deg, var(--sec-theme), var(--sec-theme-dark));
     --blue : rgb(23 78 181);
     --txt-white : #fff;
     --txt-black : rgb(34, 33, 33);
@@ -57,6 +61,9 @@ a{
 }
 
 .card-container{
+    /* background-color: var(--bg-white);
+    padding: 30px 0;
+    border-radius: 20px; */
     width: 100%;
     display: flex;
     justify-content: space-between;

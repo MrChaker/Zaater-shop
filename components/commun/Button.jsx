@@ -24,6 +24,8 @@ const Button = (props) => {
         transition : 0.3s;
         &:hover {
             box-shadow : 0 0 10px ${props.color};
+            transform : translateY(-3px);
+            --deg : 40deg;
           }
         
         ${(props) => props.normal && css`            

@@ -10,9 +10,9 @@ nav{
     width: 100%;
     z-index: 10;
     transition: 0.6s;
-    background-color: var(--pri-theme);
+    /* background-color: var(--pri-theme); */
     background-image: linear-gradient(
-230deg, var(--pri-theme-dark), #420950);
+230deg, var(--pri-theme-dark), var(--pri-theme));
 }
 
 .search{
@@ -82,7 +82,7 @@ nav ul li:hover{
     position: fixed;
     bottom: 0%;
     left: 0;
-    background-color: var(--pri-theme);
+    background-image: linear-gradient(45deg, var(--pri-theme-dark), var(--pri-theme));
     width: 100%;
     height: 60px;
   }

@@ -19,7 +19,7 @@ const Header = () => {
                              normal
                              icon = {<FontAwesomeIcon icon="shopping-bag" />}
                              text="تسوّق الان"
-                             color="linear-gradient(133deg,var(--pri-theme),#2d0404)"      
+                             color="linear-gradient(var(--deg),var(--pri-theme),#7a303d)"       
                              Size='1.4rem' /> 
                      </a>         
                     </Link>       

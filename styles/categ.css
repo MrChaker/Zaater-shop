@@ -29,9 +29,7 @@ h1{
 .circle{
     width: 200px;
     border-radius: 50%;
-    background-image: linear-gradient(
-        118deg
-        , #e402dd, #231fecd1);
+    background-image: var(--gradient);
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
