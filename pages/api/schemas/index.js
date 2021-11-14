@@ -21,4 +21,7 @@ export const typeDefs = gql`
         getProducts: [ProductType],
         getCategories : [CategoryType]
     }
+    type Mutation{
+        updateProduct(id : String, to : Int): ProductType
+    }
 `

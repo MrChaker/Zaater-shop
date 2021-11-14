@@ -8,13 +8,11 @@ import { Context } from "../../components/Layout";
 import { TIMES_Ordered } from "../../graphql/Mutations";
 import { useRouter } from "next/router";
 const Product = () => {
-    const {  data } = useQuery(LOAD_Products);
-      
+    const {  data } = useQuery(LOAD_Products);   
     const[ load, setLoad ] = useState(false);    
     const[selected_product, setSelectedProduct]= useState({});
     const Router = useRouter();
     const {productID} = Router.query ; 
-    console.log(productID);
     const [product, setProduct] = useState([
         {
             path :"",
@@ -47,16 +45,19 @@ const Product = () => {
     
     const [count, setCount] = useState(1);
     
+    var orders = { orders : [] };
+    useEffect(()=>{
+        const Storage = localStorage.getItem('Orders');
+        const inCart = Storage ? JSON.parse(localStorage.getItem('Orders')) : [] ;
+        orders = {
+            orders : inCart
+        };
+    },[orders.orders])
     
-    const Storage = localStorage.getItem('Orders');
-    const inCart = Storage ? JSON.parse(localStorage.getItem('Orders')) : [] ;
-    var orders = {
-        orders : inCart
-    };
+    
+    const [ updateProduct ] = useMutation(TIMES_Ordered);
 
-    const [ updateProduct, {TO }] = useMutation(TIMES_Ordered);
     const incrementOrder = ()=>{
-        console.log(TO) ;
         updateProduct({ variables: { 
             id: selected_product.id,
             to: selected_product.times_ordered+1
@@ -64,14 +65,37 @@ const Product = () => {
     }
 
     const saveToLocal = () =>{
-
         const order = Object.assign({}, selected_product, { image:`/images/${product[0].path}` ,quantity:count })
-        let orderArray = orders.orders;
-        orderArray[orderArray.length] = order ;
-        localStorage.setItem(`Orders`, JSON.stringify(orderArray));
-    }
-    const CartAlert = () =>{
-        swal('تمت الاضافة بنجاح ، تفقد سلّتك الان')
+        console.log(orders.orders)
+        //order.id 
+        let exists = false ;
+        let quantity_change = false ;
+        orders.orders.forEach( (or, i)=>{
+            if ( order.id === or.id && order.image === or.image){
+                exists = true ;
+                if ( order.quantity !== or.quantity){
+                    quantity_change = true
+                    or.quantity = order.quantity
+                    console.log(or.quantity)
+                }
+            }
+        })
+
+        if ( exists ){
+            if ( quantity_change ){
+                swal('تمّ تحديث الكمية المطلوبة ');
+                localStorage.setItem(`Orders`, JSON.stringify(orders.orders))
+            }else{
+                swal('هذا المنتج موجود بالفعل في سلتك ، تفقدها الان')
+            }
+        }else{
+            let orderArray = orders.orders;
+            orderArray[orderArray.length] = order ;
+            localStorage.setItem(`Orders`, JSON.stringify(orderArray));
+            swal('تمت الاضافة بنجاح ، تفقد سلّتك الان')
+
+        }
+        
     }
     
 
@@ -84,10 +108,6 @@ const Product = () => {
         setProduct(copy);
         setForRendering(!forRendering);
     }
-    
-    /* const setterC = (array)=>{
-        setColors(array)
-    } */
     return ( 
         <>
         <Context.Consumer >
@@ -106,18 +126,14 @@ const Product = () => {
                         <div className="mini-info-cont">
                             <p>اللّون</p>
                             <div className="colorpicker">
-                                
                                 {product.map((pr, i) =>(
                                     <>
-                                    <div key={i} 
-                                         style={{backgroundColor : pr.color}} 
-                                         className={ i == 0 ? "active" : ""}
-                                         onClick={()=>{
-                                             slide(product[i], product)
-                                             
-                                            }}
-                                    ></div>                                   
-                                    { i == 0 && <p>|</p> }
+                                        <div key={i} 
+                                             style={{backgroundColor : pr.color}} 
+                                             className={ i == 0 ? "active" : ""}
+                                             onClick={ ()=> slide(product[i], product) }
+                                        ></div>                                   
+                                        { i == 0 && <p>|</p> }
                                     </>
                                 ))}
                             </div>
@@ -134,7 +150,6 @@ const Product = () => {
                         </div>
                         <div className="tbn" 
                             onClick={()=>{  
-                                            CartAlert();
                                             incrementOrder();
                                             saveToLocal();
                                             setCartItems(orders.orders.length)
@@ -154,28 +169,22 @@ const Product = () => {
                         <img className="mainImg" src={`/images/${product[0].path}`} alt={selected_product.name}/>
                         <div className="sliderSelectors">
                             <div className="left-selector" 
-                                onClick={ ()=>{ 
-                                    slide(product[product.length-1], product)
-                                    
-                                    }}>
+                                onClick={ ()=> slide(product[product.length-1], product) }
+                            >
                                 <FontAwesomeIcon icon="angle-left" size="2x" color="white"/>
                             </div>
                             <div className="right-selector" 
-                                onClick={()=> { 
-                                    slide(product[1], product)
-                                    
-                                    } }>
+                                onClick={()=> slide(product[1], product) } 
+                            >
                                 <FontAwesomeIcon icon="angle-right" size="2x" color="white"/>
                             </div>
                         </div>
                         <div className="otherImages">
-                            { product.map( (pr )=> (
-                                <img src={`/images/${pr.path}`} alt="" 
-                                onClick={()=>{
-                                    slide(pr, product);
-                                    
-                                }}
-                            />
+                            { product.map( (pr,i )=> (
+                                <img 
+                                    src={`/images/${pr.path}`} alt="" key={i}
+                                    onClick={ () => slide(pr, product) }
+                                />
                             )) }
                         </div>
                     </div>

@@ -61,15 +61,13 @@ a{
 }
 
 .card-container{
-    /* background-color: var(--bg-white);
-    padding: 30px 0;
-    border-radius: 20px; */
+    
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap : 15px ;
+    justify-items: center;
     margin: 20px auto;
-    flex-wrap: wrap;
     --card-size : 20px;
     font-size: 1em;
 

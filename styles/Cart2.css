@@ -171,3 +171,9 @@
         font-size: 3.6vw;
     }
 }
+@media screen and (max-width: 350px) {
+    .Order-grid h3,
+    .Order-grid p{
+        font-size: 5.6vw;
+    }
+}

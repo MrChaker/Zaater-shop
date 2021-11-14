@@ -1,6 +1,4 @@
 .item {
-    
-    margin: 0 0 30px 0;
     width: 17vw;
     height: 27vw;
     background: #fff;
@@ -91,15 +89,21 @@
     transition: 1s;
   }
   @media screen and (max-width: 850px ) {
+    .card-container{
+      grid-template-columns: repeat(3 , 1fr);
+    }
     .item {
       width: 28vw;
       height: 42vw;
-  }
-  .details{
-    --card-txt : 2.3vw;
-  }
+    }
+    .details{
+      --card-txt : 2.3vw;
+    }
 }
 @media screen and (max-width: 630px ) {
+  .card-container{
+    grid-template-columns: repeat(2 , 1fr);
+  }
   .item {
     width: 43.5vw;
     height: 62vw;

@@ -1,6 +1,6 @@
 import { Product } from '../../../models/product';
 import { Category } from '../../../models/category';
-import mongoose from 'mongoose'
+
 export const resolvers = {
     Query : {
         getProducts : async () =>{
@@ -12,6 +12,13 @@ export const resolvers = {
             const result = await Category.find();
             return result
         }
-             
+            
+    },
+    Mutation : {
+       
+        updateProduct: async ( parent, args )=>{
+            const res = await Product.findByIdAndUpdate( args.id , { times_ordered : args.to });
+            return res;
+        }
     }
 }

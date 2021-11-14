@@ -21,7 +21,7 @@ const Button = (props) => {
         margin: ${center};
         display: ${display};
         cursor:${cursor};
-        transition : 0.3s;
+        transition : 0.2 transform;
         &:hover {
             box-shadow : 0 0 10px ${props.color};
             transform : translateY(-3px);
