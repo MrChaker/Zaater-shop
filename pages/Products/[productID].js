@@ -100,6 +100,7 @@ const Product = () => {
     
 
     const [forRendering, setForRendering] = useState(true);
+    const [active, setActive] = useState(0);
     const slide = (elem, array)=>{
         var copy = Array.from(array);
         while(copy[0] != elem){
@@ -117,37 +118,31 @@ const Product = () => {
             {
                 load && <div className="product-preview">
                     <div className="product-description">
-                        <div className="head">
-                            <h2>{ selected_product.name}</h2>
-                            <h2>{ `${selected_product.price}D.A`}</h2>
-                            <div className="line-mobile"></div>
-                        </div>
-                        <div className="line"></div>
-                        <div className="mini-info-cont">
-                            <p>اللّون</p>
-                            <div className="colorpicker">
-                                {product.map((pr, i) =>(
-                                    <>
-                                        <div key={i} 
-                                             style={{backgroundColor : pr.color}} 
-                                             className={ i == 0 ? "active" : ""}
-                                             onClick={ ()=> slide(product[i], product) }
-                                        ></div>                                   
-                                        { i == 0 && <p>|</p> }
+                        <h2>قميص احمر  </h2>
+                        <h2>{ `${selected_product.price} DZ`}</h2>
+                        <p>اللّون</p>
+                        <div className="colorpicker">
+                            {selected_product.images.map((pr, i) =>(
+                                <>
+                                    <div    key={i} 
+                                            style={{backgroundColor : pr.color}} 
+                                            className={ active == i ? "active-color" : ""}
+                                            onClick={ ()=>{
+                                                slide(pr, product)
+                                                setActive(i)
+                                            }}
+                                    ></div>                                   
+                                        
                                     </>
                                 ))}
-                            </div>
                         </div>
-                        
-                        <div className="mini-info-cont">
-                            <p >الكمّية</p>  
-                            <div className="count">
+                        <p >الكمّية</p>  
+                        <div className="count">
                                 <FontAwesomeIcon icon="minus"  onClick={()=>{if(count>1)setCount(count-1)}}/>
                                 <p>{count}</p>
                                 <FontAwesomeIcon icon="plus"  onClick={()=>setCount(count+1)}/>     
                                         
-                            </div>
-                        </div>
+                        </div>   
                         <div className="tbn" 
                             onClick={()=>{  
                                             incrementOrder();
@@ -157,17 +152,16 @@ const Product = () => {
                         >
                         <Button      
                             color="var(--err)"
-                            Size="var(--p-size)"
+                            Size="calc(var(--p-size) - 0.3rem)"
                             normal
                             icon={<FontAwesomeIcon icon='cart-plus' />}
                             text="أضف الى السّلة"
                         />
-                        </div>
-                    
+                        </div>     
                     </div>
                     <div className="product-images">
                         <img className="mainImg" src={`/images/${product[0].path}`} alt={selected_product.name}/>
-                        <div className="sliderSelectors">
+                        {/* <div className="sliderSelectors">
                             <div className="left-selector" 
                                 onClick={ ()=> slide(product[product.length-1], product) }
                             >
@@ -178,12 +172,16 @@ const Product = () => {
                             >
                                 <FontAwesomeIcon icon="angle-right" size="2x" color="white"/>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="otherImages">
-                            { product.map( (pr,i )=> (
+                            { selected_product.images.map( (pr,i )=> (
                                 <img 
                                     src={`/images/${pr.path}`} alt="" key={i}
-                                    onClick={ () => slide(pr, product) }
+                                    onClick={ () => {
+                                        slide(pr, product);
+                                        setActive(i); 
+                                    }}
+                                    className={ active == i ? 'active-img' : ''}
                                 />
                             )) }
                         </div>
