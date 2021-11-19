@@ -151,7 +151,7 @@ const Product = () => {
                                         }}
                         >
                         <Button      
-                            color="var(--err)"
+                            color="#e30000"
                             Size="calc(var(--p-size) - 0.3rem)"
                             normal
                             icon={<FontAwesomeIcon icon='cart-plus' />}
