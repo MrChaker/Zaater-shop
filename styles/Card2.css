@@ -1,4 +1,4 @@
-.item {
+ .item {
     width: 17vw;
     height: 27vw;
     background: #fff;
@@ -7,16 +7,17 @@
     border-radius: 5px;
     overflow: hidden;
     transition: 1s;
+    font-family: 'Cairo', sans-serif;
   }
   
-  .item .img-box {
+   .item .img-box {
     height: 75%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     transition: 1s;
   }
   
-  .item .img-box img {
+   .item .img-box img {
       height: 100%;
     display: block;
     width: 100%;
@@ -48,6 +49,7 @@
   .details h2 {
     width: 100%;
     font-size: var(--card-txt);
+    text-align: start;
   }
   
   .details  span {
@@ -55,13 +57,15 @@
       font-size: calc(var(--card-txt) - 0.2vw );
       color: #bbb;
       font-weight: normal;
+    text-align: start;
+
   }
   
   .details .price {
     font-weight: bold;
     font-size: var(--card-txt);
   }
-  .item a {
+   .item a {
     display: block;
     padding: 5px;
     color: #fff;
@@ -75,16 +79,16 @@
     transition: 1s;
     font-size: calc(var(--card-txt) - 0.3vw);
   }
-  .item a:hover {
+   .item a:hover {
     background-image: linear-gradient(124deg, var(--pri-theme), #e71010);
   }
-  .item:hover .details {
+   .item:hover .details {
     transform: translateY(-35%);
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
     transition: 1s;
   }
   
-  .item:hover .img-box img{
+   .item:hover .img-box img{
     filter: blur(1px) brightness(0.7);
     transition: 1s;
   }
@@ -92,7 +96,7 @@
     .card-container{
       grid-template-columns: repeat(3 , 1fr);
     }
-    .item {
+    .card-container .item {
       width: 28vw;
       height: 42vw;
     }
@@ -104,7 +108,7 @@
   .card-container{
     grid-template-columns: repeat(2 , 1fr);
   }
-  .item {
+  .card-container .item {
     width: 43.5vw;
     height: 62vw;
 }
@@ -113,7 +117,7 @@
   }
 }
 @media screen and (max-width: 350px ) {
-  .item{
+  .card-container .item{
     height: 70vw;
   }
   .details{
@@ -123,7 +127,7 @@
   .details-text{
     padding-top: 0;
   }
-  .item .img-box{
+  .card-container .item .img-box{
     height: 68%;
   }
 }

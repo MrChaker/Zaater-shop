@@ -1,17 +1,14 @@
 import { useQuery } from "@apollo/client";
-import Card2 from "../../components/commun/Card2"
 import Image from "next/image";
 import Head from "next/head"
-import { LOAD_Categories, LOAD_Products } from '../../graphql/Queries';
-
+import { LOAD_Categories } from '../../graphql/Queries';
+import Products from '../../components/Product/Store'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from 'next/router'
 import Link from "next/link";
-/* import { Link, useParams } from "react-router-dom"; */
-import { Sorter, NumberSort, Reverse } from "../../components/store/Sort";
 const Store = () => {
-    const [ render, setRender] = useState(false)
+    const [ render, setRender] = useState(false);
+    const [ sideBarState, setSideBarState ] = useState(false);
     const OrderBy = useRef("الاكثر طلباً");
     const changeOrder = ()=>{
         setRender(!render);
@@ -21,20 +18,26 @@ const Store = () => {
             <div className="Store">
                     <div className='main'>
                         
-                            <Sidebar />
+                            <Sidebar state={sideBarState}/>
                             <div className="ad-background">
-                                <img src="/images/zaaterbackground.jpg" alt="ad" /* layout='responsive' width='100%' height='100%' *//>
+                            {/*  <img src="/images/zaaterbackground.jpg" alt="ad" layout='responsive' width='100%' height='100%' /> */}
                             </div>
                         
                     </div>    
                 <div className="Store-products">
+                    <FontAwesomeIcon 
+                        icon="arrow-left" 
+                        className={ sideBarState ? "burger sidebar_closer" : "burger sidebar_opener"} 
+                        onClick={ () => setSideBarState(!sideBarState) }
+                    />
                     <div className="OrderBy">
-                        <select name="OrderBy" id="OrderBy" ref={OrderBy} onChange={changeOrder}>
+                        <select name="OrderBy" id="OrderBy" ref={OrderBy} onChange={changeOrder} >
                             <option value="الاكثر طلباً"> الاكثر طلباً</option>
                             <option value="الاحدث"> الاحدث</option>
                             <option value="الأرخص سعراً"> الأرخص سعراً</option>
                             <option value="الأغلى سعراً"> الأغلى سعراً</option>
                         </select>
+                        <p> المنتجات : 45</p>
                 </div>  
                     <Products Sort={OrderBy.current.value}/>
                 </div>
@@ -44,12 +47,12 @@ const Store = () => {
      );
 }
  
-const Sidebar = ()=>{
+const Sidebar = (props)=>{
     const [showCat, setShowCat] = useState(false);
     
     return(
         <>
-            <div className="sideBar">
+            <div className={ props.state ? "sideBar sideBar-visible " : "sideBar"}>
                 <h4>مرحبا بك في زعتر مان شوب</h4>
                 <div className="categories" onClick={()=>setShowCat(true)}>
                     تصفح الأقسام <FontAwesomeIcon icon='angle-left' />
@@ -98,57 +101,5 @@ const CategNavigation  = (props) => {
      );
 }
  
-const Products = (props) => {
-    const router = useRouter()
-    const { categ } = router.query
-    
-    const { data, loading } = useQuery(LOAD_Products);
-    const[products, setProducts]= useState([]);
-    useEffect(()=>{    
-            if(data){
-                var copy = Array.from(data.getProducts);
-                let sorter = new Sorter(copy);
-                switch(props.Sort){
-                    case "الاكثر طلباً": 
-                        sorter = new NumberSort(copy, "times_ordered");
-                        break;
-                    case "الأغلى سعراً": 
-                        sorter = new NumberSort(copy, "price");
-                        break;
-                    case "الاحدث": 
-                        sorter = new Reverse(copy);
-                        break;
-                }
-                if(categ == "All" || categ == "all"){
-                    sorter.Sort();  
-                    setProducts(copy);
-                }else{
-                    sorter.Sort();
-                    copy = copy.filter( pr => pr.category === categ);
-                    setProducts(copy);
-                }
-            }    
-    }, [categ,props.Sort,loading])
-    return ( 
-        <>
-            <div className="card-container">
-                
-                {loading && <FontAwesomeIcon  icon='spinner' size='3x' spin/>} 
-                { products.map((product,i)=>(
-                    
-                        <Card2   
-                            key={i} 
-                            img={`/images/${product.images[0].path}`} 
-                            name={product.name} 
-                            price={product.price} 
-                            onSale={product.Sale}
-                            link={`/Products/${product.id}`}
-                        />
-                    
-                    )) }
-            </div>
-            
-        </>
-     ); 
-} 
+
 export default Store;

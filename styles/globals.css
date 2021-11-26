@@ -20,18 +20,18 @@
     --txt-grey: #444444e6;
     --err : rgb(185 20 20);
     --bg-white : #f1f1f1;
+    --bg-grey : #d6d5d5;
+
     --margin : 95% ;
-    font-family: 'Quicksand', sans-serif;
-    font-family: 'Cairo', sans-serif;
     --o-size : 1.5rem;
     --right : 25%;
     --top : 5%;
 }
 
-#root{
+.App{
     overflow-x: hidden;
     padding-top: 101px;
-
+    font-family: 'Cairo', sans-serif;
 }
 a{
     text-decoration: none;
@@ -80,5 +80,5 @@ a{
     }
 }
 button svg{
-    margin-right: 8px;
+    margin: 0 8px;
 }

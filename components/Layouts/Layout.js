@@ -1,5 +1,5 @@
-import Nav from './commun/Nav'
-import Footer from './commun/footer'
+import Nav from '../commun/Nav'
+import Footer from '../commun/footer'
 import React, {useEffect, useState} from 'react';
 export const Context = React.createContext();
 

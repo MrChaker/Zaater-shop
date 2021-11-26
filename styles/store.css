@@ -10,7 +10,7 @@
     padding: 30px;
     border-radius: 15px;
     background-color: var(--bg-white);
-    --basic-size : 20px;
+    --basic-size : clamp(14px, 10vw, 20px);
     font-size: var(--basic-size);
     text-align: end;
     position: relative;
@@ -26,7 +26,7 @@
 }
 .categories,
 .categ > div{
-    font-size: 1.2em;
+    font-size: 1em;
     border-radius: 200px ;
     padding: 10px 20px ;
     transition: 0.2s;
@@ -71,7 +71,7 @@
 }
 .ad-background{
     height: 500px;
-    max-height: 500px;
+    
     width: 70%;
     background-color: var(--bg-white);
     border-radius: 10px;
@@ -87,20 +87,62 @@
     
 }
 .OrderBy{
-    width: 24.3%;
-    margin: 30px 0 30px auto;
+    width: 100%;
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    padding-right: 6px;
 }
 .OrderBy select{
     text-align: center;
     height: 70px;
-    font-size: 1.5rem;
     border: 2px solid var(--pri-theme);
     border-radius: 5px;
-    width: 100%;
+    width: 24.3%;
+    font-size: 1.5rem;
 }
-@media  screen and (max-width : 900px ) {
-    .sideBar{
-        --basic-size : 16px
+.burger{
+    display: none;
+} 
+@media  screen and (max-width : 1060px ) {
+   .sideBar{
+       position: fixed;
+       top: 9%;
+       right: 0;
+       height: 100vh;
+       min-width: 259px;
+       z-index: 9;
+       transform: translateX(100%);
+       transition: 0.5s;
+   }
+   .Store-products > .burger{
+        position: fixed;
+        right: 0;
+        padding: 4px;
+        font-size: 24px;
+        transition: transform 0.5s; 
+       z-index: 9;
+           
+   }
+   .Store-products > .burger{
+        background-color: var(--pri-theme);
+        cursor: pointer;
+        color: white;
     }
-    
+    .sidebar_opener{
+        transform: translateX(0px);
+        border-radius: 5px 0 0 5px;    
+    }
+    .sidebar_closer{
+        transform: translateX(-260px) rotate(180deg);
+        border-radius: 0 5px 5px 0;    
+    }
+   .sideBar-visible{
+       transform: translateX(0);
+   } 
+   .burger{
+       display: block;
+   } 
 }

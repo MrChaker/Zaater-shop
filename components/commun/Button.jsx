@@ -9,15 +9,18 @@ const Button = (props) => {
     const cursor = props.desable ? 'not-allowed' : 'pointer';
     const display = props.block ? 'block' : 'inline' ;
     const center = props.centered ? 'auto' : '';
-    const padding = props.icon ? '0.4em' : "0.2em"
+    const padding = props.icon || props.righticon ? '0.5em' : "0.2em";
+    const paddingSide = props.righticon ? '0.5em 0.5em 1em' : '1em';
+    const raduis = props.Raduis ? props.Raduis : "4px" ;
     const Button = styled.button`
+        font-family: inherit;
         font-size : 1.5rem;
         font-size : ${props.Size};
         background: transparent;
-        border-radius: 4px;
+        border-radius: ${raduis};
         border: 2px solid ${varColor};
         color: ${varColor};
-        padding: ${padding} 1em;
+        padding: ${padding} ${paddingSide};
         margin: ${center};
         display: ${display};
         cursor:${cursor};
@@ -42,6 +45,7 @@ const Button = (props) => {
         <Button normal={props.normal ? 'true': false}>
             {props.icon}
             {props.text}
+            {props.righticon}
         </Button>
      );
 }

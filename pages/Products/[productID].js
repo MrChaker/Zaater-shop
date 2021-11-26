@@ -4,7 +4,7 @@ import Button from "../../components/commun/Button";
 import swal from 'sweetalert';
 import { useQuery, useMutation } from "@apollo/client";
 import { LOAD_Products } from "../../graphql/Queries";
-import { Context } from "../../components/Layout";
+import { Context } from "../../components/Layouts/Layout";
 import { TIMES_Ordered } from "../../graphql/Mutations";
 import { useRouter } from "next/router";
 const Product = () => {
@@ -118,7 +118,7 @@ const Product = () => {
             {
                 load && <div className="product-preview">
                     <div className="product-description">
-                        <h2>قميص احمر  </h2>
+                        <h2>{selected_product.name}</h2>
                         <h2>{ `${selected_product.price} DZ`}</h2>
                         <p>اللّون</p>
                         <div className="colorpicker">

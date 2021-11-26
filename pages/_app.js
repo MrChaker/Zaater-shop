@@ -8,13 +8,19 @@ import '../styles/Card2.css';
 import '../styles/Cart2.css';
 import '../styles/categ.css';
 import '../styles/footer.css';
-import Layout from '../components/Layout';
+import '../styles/Admin.css';
+
+import Layout from '../components/Layouts/Layout';
+import AdminLayout from '../components/Layouts/AdminLayout';
 import ApolloProv from '../components/Graphql/ApolloProv';
 /* import { ChakraProvider } from "@chakra-ui/react" */
 import {fontAW} from '../fontawsome';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 fontAW();
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  console.log(router.pathname)
   return(
     <>
     <Head >
@@ -23,9 +29,16 @@ function MyApp({ Component, pageProps }) {
     <ApolloProv>
       
       <div id="root">
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        { router.pathname.includes('/admin') && 
+          <AdminLayout> 
+            <Component {...pageProps} />
+          </AdminLayout>
+        }
+        { !router.pathname.includes('/admin') && 
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        }
       </div>
       
     </ApolloProv>
