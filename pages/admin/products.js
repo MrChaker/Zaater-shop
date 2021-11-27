@@ -1,4 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from 'next/link'
+import { useState } from "react";
 import Button from '../../components/commun/Button';
 import  Products  from "../../components/Product/Store";
 const Admin_Products = () => {
@@ -11,17 +13,24 @@ const Admin_Products = () => {
                             <FontAwesomeIcon icon="search" color="grey"/>
                         </div>
                 </div> 
-                <Button 
-                    normal
-                    text = "اِضافة منتج"
-                    color = "#387738"
-                    righticon = { <FontAwesomeIcon icon="plus" color="white" />}
-                    Raduis = "200px"
-                />
+                <Link href="/admin/AddProduct">
+                    <a>
+                        <Button 
+                            normal
+                            text = "اِضافة منتج"
+                            color = "#387738"
+                            righticon = { <FontAwesomeIcon icon="plus" color="white" />}
+                            Raduis = "200px"   
+                        />
+                    </a>
+                </Link>
+                
             </div>
             <div className="admin_products">
                 <Products Sort={"الاكثر طلباً"}/>
             </div>
+
+            
         </>
      );
 }
