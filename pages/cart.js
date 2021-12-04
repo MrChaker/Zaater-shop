@@ -1,7 +1,7 @@
 
-import React, { useEffect, useState } from "react";
-import Button from "../components/commun/Button";
-import { Context } from "../components/Layouts/Layout";
+import { useEffect, useState } from "react";
+import Button from "../FrontEnd/components/commun/Button";
+import { Context } from "../FrontEnd/components/Layouts/Layout";
 import swal from "sweetalert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'

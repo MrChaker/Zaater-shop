@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server-micro';
-import {typeDefs} from './schemas/index';
-import {resolvers} from './resolvers/index';
-import Connect from '../../utils/dbConnect';
+import {typeDefs} from './BackEnd/schemas/index';
+import {resolvers} from './BackEnd/resolvers/index';
+import Connect from '../../BackEnd/utils/dbConnect';
 Connect();
 
 const apollo_server = new ApolloServer({	

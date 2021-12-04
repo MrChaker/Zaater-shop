@@ -1,9 +1,9 @@
 
- import Categ from '../components/homePage/categ';
-import Exclusive from '../components/homePage/Excusive';
-import Header from '../components/homePage/Header'; 
+ import Categ from '../FrontEnd/components/homePage/categ';
+import Exclusive from '../FrontEnd/components/homePage/Excusive';
+import Header from '../FrontEnd/components/homePage/Header'; 
 
-import MostSold from '../components/homePage/MostSold';
+import MostSold from '../FrontEnd/components/homePage/MostSold';
 
 export default function Home() {
   

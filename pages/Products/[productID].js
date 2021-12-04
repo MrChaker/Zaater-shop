@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../../components/commun/Button";
+import Button from "../../FrontEnd/components/commun/Button";
 import swal from 'sweetalert';
 import { useQuery, useMutation } from "@apollo/client";
-import { LOAD_Products } from "../../graphql/Queries";
-import { Context } from "../../components/Layouts/Layout";
-import { TIMES_Ordered } from "../../graphql/Mutations";
+import { LOAD_Products } from "../../FrontEnd/graphql/Queries";
+import { Context } from "../../FrontEnd/components/Layouts/Layout";
+import { TIMES_Ordered } from "../../FrontEnd/graphql/Mutations";
 import { useRouter } from "next/router";
 const Product = () => {
     const {  data } = useQuery(LOAD_Products);   
@@ -161,18 +161,7 @@ const Product = () => {
                     </div>
                     <div className="product-images">
                         <img className="mainImg" src={`/images/${product[0].path}`} alt={selected_product.name}/>
-                        {/* <div className="sliderSelectors">
-                            <div className="left-selector" 
-                                onClick={ ()=> slide(product[product.length-1], product) }
-                            >
-                                <FontAwesomeIcon icon="angle-left" size="2x" color="white"/>
-                            </div>
-                            <div className="right-selector" 
-                                onClick={()=> slide(product[1], product) } 
-                            >
-                                <FontAwesomeIcon icon="angle-right" size="2x" color="white"/>
-                            </div>
-                        </div> */}
+                        
                         <div className="otherImages">
                             { selected_product.images.map( (pr,i )=> (
                                 <img 

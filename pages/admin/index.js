@@ -1,4 +1,4 @@
-import Sales from "../../components/Charts/sales";
+import Sales from "../../FrontEnd/components/Charts/sales";
 
 const Admin = () => {
         

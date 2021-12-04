@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import Head from "next/head"
-import { LOAD_Categories } from '../../graphql/Queries';
-import Products from '../../components/Product/Store'
+import { LOAD_Categories } from '../../FrontEnd/graphql/Queries';
+import Products from '../../FrontEnd/components/Product/Store'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -68,7 +68,6 @@ const CategNavigation  = (props) => {
     const [ categories, setCategories]= useState([]);
     useEffect(()=>{
         if(data){
-            console.log(data)
             setCategories(data.getCategories);
             /* setCategories(data); */
         }
