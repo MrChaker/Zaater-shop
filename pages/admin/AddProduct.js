@@ -5,7 +5,7 @@ import { LOAD_Categories} from "../../FrontEnd/graphql/Queries";
 import { useRef, useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import swal from 'sweetalert';
-import useImageColor from "../../hooks/useImageColor";
+import useImageColor from "../../FrontEnd/hooks/useImageColor";
 
 const NewProduct = () => {
     const [ createProduct ] = useMutation(NEW_Product);
@@ -52,10 +52,6 @@ const NewProduct = () => {
         const { color } = useImageColor(image.current);
         ImageColor = color 
     }
-    /* useEffect(()=>{
-        const image = document.getElementById('i');
-        color = ImageColor;
-    },[]) */
     
     return ( 
         <>
