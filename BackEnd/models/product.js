@@ -4,7 +4,11 @@ const ProductSchema = new Schema({
     name:String,
     images:[{
         path:String,
-        color:String
+        color:String,
+        img:{
+            data: Buffer,
+            contentType: String
+        }
     }],
     price:Number,
     times_ordered:Number,

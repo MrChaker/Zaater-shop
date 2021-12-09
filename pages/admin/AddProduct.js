@@ -2,25 +2,73 @@ import Uploader from "../../FrontEnd/components/ImageUpload/Uploader";
 import Button from "../../FrontEnd/components/commun/Button";
 import { NEW_Product, NEW_Category } from "../../FrontEnd/graphql/Mutations";
 import { LOAD_Categories} from "../../FrontEnd/graphql/Queries";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, createContext } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import swal from 'sweetalert';
-import useImageColor from "../../FrontEnd/hooks/useImageColor";
+import FileUpload from "../../FrontEnd/hooks/FileUpload";
+import e from "cors";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
+export const UplaodContext = createContext({});
 const NewProduct = () => {
+
     const [ createProduct ] = useMutation(NEW_Product);
     const name = useRef("");
     const price = useRef("");
     const category = useRef("");
-    const images = [];
-    const submit = () =>{
-        createProduct({ variables: { 
-            name,
-            price: parseInt(price) ,
-            category ,
-            images ,
-        }});
+    const [ ImageFile, setImageFile ] = useState('');
+
+    const submit = (e) => {
+        e.preventDefault();
+        const reader = new FileReader();
+        reader.readAsDataURL(ImageFile);
+        reader.onloadend = () => {
+            swal("...يتم الان تحميل المنتج",
+             { buttons: false, icon: "pending"})
+            fetch( "/api/images",{
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin':'*'
+                },
+                body: JSON.stringify({ public_id: name.current.value, upload_preset :  "jvqgsgcl", file: reader.result }) // body data type must match "Content-Type" header
+                })
+             .then(()=> {
+                fetch("/api/images",{
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin':'*'
+                    },
+                    body: JSON.stringify({public_id: name.current.value})
+                })
+                .then(res =>{
+                    return res.json()
+                })
+               .then( data => { 
+                  createProduct({ variables: { 
+                    name: name.current.value,
+                    price: parseInt(price.current.value) ,
+                    category: category.current.value ,
+                    images:[
+                         {
+                             path:data.url ,
+                             color:data.color
+                         }    
+                        ],
+                  }});
+                  swal("تمت اضافة منتج جديد",  {icon: "success"});
+                })
+           })  
+           .catch(()=> swal("فشل العملية ، حاول من جديد", {icon: "warning"}));
+        };
+        reader.onerror = () => {
+            console.error('AHHHHHHHH!!');
+            setErrMsg('something went wrong!');
+        };
     }
+    
 
     const [ createCategory] = useMutation(NEW_Category);
     const newCategoryName = useRef("");
@@ -34,6 +82,7 @@ const NewProduct = () => {
                 arabic: newCategoryArabic.current.value
             }});
             setCategoryInput(false);
+            
             swal("تمت اضافة قسم جديد");
         }
     }
@@ -45,16 +94,9 @@ const NewProduct = () => {
             setCategories(data.getCategories);
         }
     },[loading]) ;
-    const image = useRef("");
-    console.log(image.current);
-    var ImageColor = "var(--pri-theme-dark)";
-    if(image.current != ""){
-        const { color } = useImageColor(image.current);
-        ImageColor = color 
-    }
     
     return ( 
-        <>
+      <UplaodContext.Provider value={{ImageFile, setImageFile}}>
         <h3>ادخل معلومات المنتوج</h3>
         <div className="new_product">
             <form >
@@ -97,21 +139,22 @@ const NewProduct = () => {
                 </div>
                 <div className="image_form">
                     <label htmlFor="product-name">صورة المنتوج</label>
-                    <img id="i" src="/images/sneaker.png" ref={image}/>
-                    <Uploader/>
+                    {/* <img id="i" src="/images/sneaker.png" ref={image}/> */}
+                    <Uploader />
                 </div>
                 <Button 
-                    /* color =  {ImageColor ? ImageColor : "var(--pri-theme-dark)"} */
-                    color =  {ImageColor}
+                    color =  "var(--pri-theme-dark)"
                     normal
                     text = "حفظ المعلومات"
                     block
-                    onClick = {submit}
+                    onClick = {(e)=>{
+                        submit(e);
+                    }}
                 />
             </form>
 
         </div>
-        </>
+     </UplaodContext.Provider >
      );
 }
  

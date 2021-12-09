@@ -48,11 +48,13 @@ const Products = (props) => {
                     
                         <Card2   
                             key={i} 
-                            img={`/images/${product.images[0].path}`} 
+                            id= {product.id}
+                            img={`${product.images[0].path}`} 
                             name={product.name} 
                             price={product.price} 
                             onSale={product.Sale}
                             link={`/Products/${product.id}`}
+                            admin= { router.pathname.includes('/admin') } 
                         />
                     
                     )) }

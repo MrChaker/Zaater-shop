@@ -14,4 +14,6 @@ export default async function Connect(){
     });
     connection.isConnected = db.connection.readyState
     console.log(process.env.MONGO_URI);
+    console.log(process.env.CLOUD_API_KEY);
+
 }

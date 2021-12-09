@@ -65,7 +65,7 @@ const Product = () => {
     }
 
     const saveToLocal = () =>{
-        const order = Object.assign({}, selected_product, { image:`/images/${product[0].path}` ,quantity:count })
+        const order = Object.assign({}, selected_product, { image:`${product[0].path}` ,quantity:count })
         console.log(orders.orders)
         //order.id 
         let exists = false ;
@@ -160,12 +160,12 @@ const Product = () => {
                         </div>     
                     </div>
                     <div className="product-images">
-                        <img className="mainImg" src={`/images/${product[0].path}`} alt={selected_product.name}/>
+                        <img className="mainImg" src={`${product[0].path}`} alt={selected_product.name}/>
                         
                         <div className="otherImages">
                             { selected_product.images.map( (pr,i )=> (
                                 <img 
-                                    src={`/images/${pr.path}`} alt="" key={i}
+                                    src={`${pr.path}`} alt="" key={i}
                                     onClick={ () => {
                                         slide(pr, product);
                                         setActive(i); 

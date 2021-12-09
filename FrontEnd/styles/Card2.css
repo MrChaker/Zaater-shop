@@ -9,7 +9,9 @@
     transition: 1s;
     font-family: 'Cairo', sans-serif;
   }
-  
+  .deleted{
+    display: none;
+  }
    .item .img-box {
     height: 75%;
     -webkit-box-sizing: border-box;

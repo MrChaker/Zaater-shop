@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
-import Button from '../../components/commun/Button';
-import  Products  from "../../components/Product/Store";
+import Button from '../../FrontEnd/components/commun/Button';
+import  Products  from "../../FrontEnd/components/Product/Store";
 const Admin_Products = () => {
     return ( 
         <>
