@@ -4,8 +4,6 @@ const Admin = () => {
         
     return ( 
         <>
-        
-            
             <div className="stat_cards">
                 <div className="stat_card purple">
                     <div className="stat_name">المبيعات</div>

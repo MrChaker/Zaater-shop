@@ -13,7 +13,7 @@ const data = [
             width={600}    
             height={200} 
             margin= {{ top: 20, bottom: 0, left: 10, right: 10}}
-            data={data}
+            data={data ? data : []}
         >
             <Line 
                 type="monotone" 
@@ -23,8 +23,8 @@ const data = [
                 stroke="var(--txt-white)" />
             {/* <CartesianGrid stroke="#fdb" /> */}
             <XAxis tickLine={false} name={"time"} dataKey="name"/>
-            <YAxis tickLine={false} name={"مبيعة"} />
-            <CartesianAxis tickLine={false} orientation={"right"}/>
+            <YAxis tickLine={false}  />
+            {/* <CartesianAxis tickLine={false} orientation={"right"}/> */}
             
             <Tooltip 
                 contentStyle={{ backgroundColor: "#8884d8", color: "#fff", borderRadius: 10 }} 
