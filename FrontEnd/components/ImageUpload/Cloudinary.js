@@ -1,3 +1,4 @@
+
 function showUploadWidget() {
     cloudinary.openUploadWidget({
        cloudName: "<cloud name>",

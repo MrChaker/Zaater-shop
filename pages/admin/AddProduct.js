@@ -6,7 +6,6 @@ import { useRef, useState, useEffect, createContext } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import swal from 'sweetalert';
 import FileUpload from "../../FrontEnd/hooks/FileUpload";
-import e from "cors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
