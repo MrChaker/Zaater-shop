@@ -7,6 +7,7 @@ const Card = (props) => {
     const [ deleteProduct ] = useMutation(DELETE_Product);
     const [deleted, setDeleted] = useState(false);
     const Delete = (id) =>{
+
       setDeleted(true);
       deleteProduct({ variables: { 
         id: id
@@ -15,7 +16,7 @@ const Card = (props) => {
     
     return ( 
         <>
-            <motion.div className={ deleted ? "item deleted" : "item"} 
+            <motion.div dir="ltr" className={ deleted ? "item deleted" : "item"} 
             initial = { {scale : 0.4} }
             animate={{
               scale : 1

@@ -7,9 +7,9 @@ const Header = () => {
         <>
              <header>
                 <div className="back-container">
-                    <div className="text-cont">
+                    <div className="text-cont" dir="rtl">
                             <h1>زعتر مان شوب </h1>
-                            <p>{`لبيع الملابس الرجالبة ، سلعة `} {` متوفرة بكلّ المقاسات و بأسعار `} <span>أرض أرض </span>    </p>
+                            <p>{`لبيع الملابس الرجالية ، سلعة `} {` متوفرة بكلّ المقاسات و بأسعار `} <span>أرض أرض </span>    </p>
                     </div>
                     <div className="btn"> 
                     

@@ -31,13 +31,13 @@ const Store = () => {
                         onClick={ () => setSideBarState(!sideBarState) }
                     />
                     <div className="OrderBy">
+                        <p> المنتجات : 45</p>
                         <select name="OrderBy" id="OrderBy" ref={OrderBy} onChange={changeOrder} >
                             <option value="الاكثر طلباً"> الاكثر طلباً</option>
                             <option value="الاحدث"> الاحدث</option>
                             <option value="الأرخص سعراً"> الأرخص سعراً</option>
                             <option value="الأغلى سعراً"> الأغلى سعراً</option>
                         </select>
-                        <p> المنتجات : 45</p>
                 </div>  
                     <Products Sort={OrderBy.current.value}/>
                 </div>
@@ -72,7 +72,6 @@ const CategNavigation  = (props) => {
             /* setCategories(data); */
         }
     },[loading]) ;
-    if (loading) return <FontAwesomeIcon icon='spinner' size='3x' spin/>;
 
     return ( 
         <>

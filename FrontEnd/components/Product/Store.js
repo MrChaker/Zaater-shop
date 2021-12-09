@@ -41,7 +41,7 @@ const Products = (props) => {
     }, [categ,props.Sort,loading])
     return ( 
         <>
-            <div  className={ router.pathname.includes('/admin') ? "admin_card_cont" : "card-container"}>
+            <div  dir="rtl" className={ router.pathname.includes('/admin') ? "admin_card_cont" : "card-container"}>
                 
                 {loading && <FontAwesomeIcon  icon='spinner' size='3x' spin/>} 
                 { products.map((product,i)=>(
