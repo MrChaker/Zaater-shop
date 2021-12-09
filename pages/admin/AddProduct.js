@@ -24,7 +24,7 @@ const NewProduct = () => {
         reader.readAsDataURL(ImageFile);
         reader.onloadend = () => {
             swal("...يتم الان تحميل المنتج",
-             { buttons: false, icon: "pending"})
+             { buttons: false, icon: "success"})
             fetch( "/api/images",{
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 headers: {

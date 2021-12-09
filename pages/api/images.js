@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         /* const publicIds = resources.map((file) => file.public_id); */
         var url; var color; var p;
         await cloudinary.v2.api.resource(req.body.public_id,{colors: true},(err, result)=>{
-            url = result.url;
+            url = result.secure_url;
             color = result.colors[0][0]
         });
         
