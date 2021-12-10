@@ -25,7 +25,7 @@ const Admin = () => {
             </div>
             <h3>المدخول</h3>
             <div className="stat_chart">
-                <Sales/>
+            {/* <Sales/> */}
             </div>
         
         </>
