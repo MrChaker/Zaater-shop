@@ -1,5 +1,6 @@
 import { Product } from '../models/product';
 import { Category } from '../models/category';
+import cloudinary from 'cloudinary';
 
 export const resolvers = {
     Query : {
@@ -41,6 +42,21 @@ export const resolvers = {
             });
             const res = await newCategory.save();
             return res
+        },
+        uploadImage: async (parent, args)=>{
+            cloudinary.v2.config({
+                cloud_name: process.env.CLOUD_NAME,
+                api_key: process.env.CLOUD_API_KEY,
+                api_secret: process.env.CLOUD_SECRET,
+                secure: true,
+                color: true
+              });
+            const result = await cloudinary.v2.uploader.unsigned_upload(args.file, "jvqgsgcl", { public_id: args.public_id });
+            const data = {
+                secure_url: result.secure_url,
+                color : result.colors[0][0]
+            }
+            return  data 
         }
     }
 }

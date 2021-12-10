@@ -40,4 +40,15 @@ const NEW_Category = gql`
         }
 }
 `
-export { TIMES_Ordered, NEW_Product, DELETE_Product, NEW_Category }
+const IMAGE_UPLOAD = gql`
+    mutation uploadImage(
+        $file: String!,
+        $public_id : String!
+        ) {
+        uploadImage(file: $file, public_id: $public_id){
+            secure_url
+            color
+        }
+}
+`
+export { TIMES_Ordered, NEW_Product, DELETE_Product, NEW_Category, IMAGE_UPLOAD }

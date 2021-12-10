@@ -1,6 +1,6 @@
 import Uploader from "../../FrontEnd/components/ImageUpload/Uploader";
 import Button from "../../FrontEnd/components/commun/Button";
-import { NEW_Product, NEW_Category } from "../../FrontEnd/graphql/Mutations";
+import { NEW_Product, NEW_Category, IMAGE_UPLOAD } from "../../FrontEnd/graphql/Mutations";
 import { LOAD_Categories} from "../../FrontEnd/graphql/Queries";
 import { useRef, useState, useEffect, createContext } from "react";
 import { useMutation, useQuery } from "@apollo/client";
@@ -33,33 +33,39 @@ const NewProduct = () => {
             return result
     }
     
+    const [ uploadImage ] = useMutation(IMAGE_UPLOAD, {
+        onCompleted(data){
+            createProduct({ variables: { 
+                name: name.current.value,
+                price: parseInt(price.current.value) ,
+                category: category.current.value ,
+                images:[
+                   {
+                       path:data.uploadImage.secure_url ,
+                       color:data.uploadImage.color
+                   }    
+                ],
+              }});
+              swal("تمت اضافة منتج جديد",  {icon: "success"});
+        },
+        onError(){
+            swal(".فشل العملية ، حاول من جديد", {icon: "warning"});
+        }
+    });
+
     const submit = (e) => {
         e.preventDefault();
         const reader = new FileReader();
         reader.readAsDataURL(ImageFile);
         reader.onloadend = () => {
-            ImageUpload(name.current.value, "jvqgsgcl", reader.result)
-            
-                 .then( data => { 
-                    createProduct({ variables: { 
-                      name: name.current.value,
-                      price: parseInt(price.current.value) ,
-                      category: category.current.value ,
-                      images:[
-                         {
-                             path:data.secure_url ,
-                             color:data.colors[0][0]
-                         }    
-                      ],
-                    }});
-                    swal("تمت اضافة منتج جديد",  {icon: "success"});
-                })
-                .catch(()=> swal(".فشل العملية ، حاول من جديد", {icon: "warning"}));
-            } 
-          
+            swal("...يتم الان تحميل المنتج",{ buttons: false, icon: "success"});
+            uploadImage({ variables: {
+                file: reader.result,
+                public_id: name.current.value
+            }})
+        } 
         reader.onerror = () => {
-            console.error('AHHHHHHHH!!');
-            setErrMsg('something went wrong!');
+            swal(".فشل العملية ، حاول من جديد", {icon: "warning"});
         };
     }
     

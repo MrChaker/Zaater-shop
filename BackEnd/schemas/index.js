@@ -25,11 +25,18 @@ export const typeDefs = gql`
         path: String,
         color:String
     }
-    
+
+    type CloudinaryFile{
+        file: String,
+        public_id: String,
+        secure_url: String,
+        color: String
+    }
     type Mutation{
         createProduct(name: String, price: Int, category: String, images: [ImageInput]): ProductType,
         updateProduct(id : String, to : Int): ProductType,
         deleteProduct(id: String): ProductType,
-        createCategory(name: String, arabic: String): CategoryType
+        createCategory(name: String, arabic: String): CategoryType,
+        uploadImage(file: String, public_id: String): CloudinaryFile
     }
 `
