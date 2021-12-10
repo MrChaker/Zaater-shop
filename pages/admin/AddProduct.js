@@ -18,50 +18,45 @@ const NewProduct = () => {
     const category = useRef("");
     const [ ImageFile, setImageFile ] = useState('');
 
+    const ImageUpload = async ( public_id, upload_preset, file) =>{
+        
+            swal("...يتم الان تحميل المنتج",{ buttons: false, icon: "success"});
+            const res = await fetch("/api/images",{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin':'*'
+                },
+                body: JSON.stringify({ public_id, upload_preset, file })
+            })
+            const result = await res.json()
+            return result
+    }
+    
     const submit = (e) => {
         e.preventDefault();
         const reader = new FileReader();
         reader.readAsDataURL(ImageFile);
         reader.onloadend = () => {
-            swal("...يتم الان تحميل المنتج",
-             { buttons: false, icon: "success"})
-            fetch( "/api/images",{
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin':'*'
-                },
-                body: JSON.stringify({ public_id: name.current.value, upload_preset :  "jvqgsgcl", file: reader.result }) // body data type must match "Content-Type" header
-                })
-             .then(()=> {
-                fetch("/api/images",{
-                    method: "PUT",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin':'*'
-                    },
-                    body: JSON.stringify({public_id: name.current.value})
-                })
-                .then(res =>{
-                    return res.json()
-                })
-               .then( data => { 
-                  createProduct({ variables: { 
-                    name: name.current.value,
-                    price: parseInt(price.current.value) ,
-                    category: category.current.value ,
-                    images:[
+            ImageUpload(name.current.value, "jvqgsgcl", reader.result)
+            
+                 .then( data => { 
+                    createProduct({ variables: { 
+                      name: name.current.value,
+                      price: parseInt(price.current.value) ,
+                      category: category.current.value ,
+                      images:[
                          {
-                             path:data.url ,
-                             color:data.color
+                             path:data.secure_url ,
+                             color:data.colors[0][0]
                          }    
-                        ],
-                  }});
-                  swal("تمت اضافة منتج جديد",  {icon: "success"});
+                      ],
+                    }});
+                    swal("تمت اضافة منتج جديد",  {icon: "success"});
                 })
-           })  
-           .catch(()=> swal("فشل العملية ، حاول من جديد", {icon: "warning"}));
-        };
+                .catch(()=> swal(".فشل العملية ، حاول من جديد", {icon: "warning"}));
+            } 
+          
         reader.onerror = () => {
             console.error('AHHHHHHHH!!');
             setErrMsg('something went wrong!');

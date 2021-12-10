@@ -6,24 +6,17 @@ cloudinary.v2.config({
     secure: true,
     color: true
 });
-
+export const config = {
+    api: {
+      bodyParser: {
+        sizeLimit: '15mb',
+      },
+    },
+  }
+  
 export default async function handler(req, res) {
-    if( req. method == "PUT"){
-        const { resources } = await cloudinary.v2.search
-            .expression(`public_id:${req.body.public_id}`)
-            .max_results(1)
-            .execute();
-        /* const publicIds = resources.map((file) => file.public_id); */
-        var url; var color; var p;
-        await cloudinary.v2.api.resource(req.body.public_id,{colors: true},(err, result)=>{
-            url = result.secure_url;
-            color = result.colors[0][0]
-        });
-        
-        res.send({url, color});
-   }else {
+    
         const result = await cloudinary.v2.uploader.unsigned_upload(req.body.file, req.body.upload_preset, { public_id: req.body.public_id });
-
-        res.send();
-   }
+        res.status(200).json(result)
+   
   }
