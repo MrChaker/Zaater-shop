@@ -1,7 +1,6 @@
 import { Product } from '../models/product';
 import { Category } from '../models/category';
-import cloudinary from 'cloudinary';
-
+import cloudinary from 'cloudinary'
 export const resolvers = {
     Query : {
         getProducts : async () =>{
@@ -44,13 +43,7 @@ export const resolvers = {
             return res
         },
         uploadImage: async (parent, args)=>{
-            cloudinary.v2.config({
-                cloud_name: process.env.CLOUD_NAME,
-                api_key: process.env.CLOUD_API_KEY,
-                api_secret: process.env.CLOUD_SECRET,
-                secure: true,
-                color: true
-              });
+            console.log("hi")
             const result = await cloudinary.v2.uploader.unsigned_upload(args.file, "jvqgsgcl", { public_id: args.public_id });
             const data = {
                 secure_url: result.secure_url,

@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server-micro';
 import {typeDefs} from '../../BackEnd/schemas/index';
 import {resolvers} from '../../BackEnd/resolvers/index';
 import Connect from '../../BackEnd/utils/dbConnect';
-
+import cloudinary from 'cloudinary';
 Connect();
 
 const apollo_server = new ApolloServer({	
@@ -11,6 +11,13 @@ const apollo_server = new ApolloServer({
                       });
 const startServer = apollo_server.start();
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+  secure: true,
+  color: true
+});
 
 export const config = {
     api: {
