@@ -11,7 +11,8 @@ export const typeDefs = gql`
         times_ordered : Int,
         name : String,
         category: String,
-        images: [ImageType]
+        images: [ImageType],
+        description: String
     }
     type CategoryType{
         name: String,
@@ -27,16 +28,14 @@ export const typeDefs = gql`
     }
 
     type CloudinaryFile{
-        file: String,
-        public_id: String,
-        secure_url: String,
+        path: String,
         color: String
     }
     type Mutation{
-        createProduct(name: String, price: Int, category: String, images: [ImageInput]): ProductType,
+        createProduct(name: String, price: Int, category: String, description: String, images: [ImageInput]): ProductType,
         updateProduct(id : String, to : Int): ProductType,
-        deleteProduct(id: String): ProductType,
+        deleteProduct(id: String, publicid: String): ProductType,
         createCategory(name: String, arabic: String): CategoryType,
-        uploadImage(file: String, public_id: String): CloudinaryFile
+        uploadImage(files: [String], public_id: String): [CloudinaryFile]
     }
 `

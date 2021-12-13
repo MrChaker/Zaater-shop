@@ -116,14 +116,14 @@ const Product = () => {
             return <>
             {!load && <FontAwesomeIcon icon="spinner" size="5x" spin className="spinner"/> } 
             {
-                load && <div className="product-preview">
-                    <div className="product-description">
+                load && <>
+                <div className="product-preview">
+                    <div className="product-info">
                         <h2>{selected_product.name}</h2>
                         <h2>{ `${selected_product.price} DZ`}</h2>
                         <p>اللّون</p>
                         <div className="colorpicker">
                             {selected_product.images.map((pr, i) =>(
-                                <>
                                     <div    key={i} 
                                             style={{backgroundColor : pr.color}} 
                                             className={ active == i ? "active-color" : ""}
@@ -132,8 +132,6 @@ const Product = () => {
                                                 setActive(i)
                                             }}
                                     ></div>                                   
-                                        
-                                    </>
                                 ))}
                         </div>
                         <p >الكمّية</p>  
@@ -152,16 +150,17 @@ const Product = () => {
                         >
                         <Button      
                             color="#e30000"
+                            style="box-shadow : 0 0 10px #e30000"
                             Size="calc(var(--p-size) - 0.3rem)"
                             normal
                             icon={<FontAwesomeIcon icon='cart-plus' />}
                             text="أضف الى السّلة"
                         />
-                        </div>     
+                        </div>       
                     </div>
+                    
                     <div className="product-images">
                         <img className="mainImg" src={`${product[0].path}`} alt={selected_product.name}/>
-                        
                         <div className="otherImages">
                             { selected_product.images.map( (pr,i )=> (
                                 <img 
@@ -175,7 +174,12 @@ const Product = () => {
                             )) }
                         </div>
                     </div>
+                    <div className="product-description">
+                        {selected_product.description}
+                    </div>
                 </div>  
+                
+            </>    
             }   
             </> 
             }}

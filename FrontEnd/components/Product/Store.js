@@ -8,10 +8,9 @@ import { Sorter, NumberSort, Reverse } from "./Sort";
 
 const Products = (props) => {
     const router = useRouter();
-    const { categ } =  { categ : "All"} ;
-    console.log(categ)
+    const { categ } =  {categ: "All"}/* router.query */ ;
     const { data, loading } = useQuery(LOAD_Products);
-    console.log(data)
+   
 
     const[products, setProducts]= useState([]);
     useEffect(()=>{    

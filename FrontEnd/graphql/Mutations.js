@@ -16,16 +16,20 @@ const NEW_Product = gql`
         $name: String!,
         $price: Int!,
         $category: String!,
+        $description: String!,
         $images: [ImageInput]!
         ) {
-        createProduct(name: $name, price: $price, category: $category, images: $images){
+        createProduct(name: $name, price: $price, category: $category, description: $description, images: $images ){
             id
         }
 }
 `
 const DELETE_Product = gql`
-    mutation deleteProduct($id: String!){
-        deleteProduct(id: $id){
+    mutation deleteProduct(
+        $id: String!,
+        $publicid : String!
+        ) {
+        deleteProduct(id: $id, publicid: $publicid){
             id
         }
     }
@@ -42,13 +46,13 @@ const NEW_Category = gql`
 `
 const IMAGE_UPLOAD = gql`
     mutation uploadImage(
-        $file: String!,
+        $files: [String]!,
         $public_id : String!
         ) {
-        uploadImage(file: $file, public_id: $public_id){
-            secure_url
+        uploadImage(files: $files, public_id: $public_id){
+            path
             color
         }
 }
 `
-export { TIMES_Ordered, NEW_Product, DELETE_Product, NEW_Category, IMAGE_UPLOAD }
+export { TIMES_Ordered, NEW_Product, DELETE_Product, NEW_Category, IMAGE_UPLOAD}

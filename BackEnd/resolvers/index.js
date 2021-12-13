@@ -1,17 +1,23 @@
 import { Product } from '../models/product';
 import { Category } from '../models/category';
+import { Order } from '../models/order';
+
 import cloudinary from 'cloudinary'
 export const resolvers = {
     Query : {
         getProducts : async () =>{
-           const products = await Product.find()
+           const products = await Product.find().limit(5);
+           console.log(products)
              return products
         },
-        getCategories : async ()=>{
-            
-            const result = await Category.find();
+        getCategories : async ()=>{ 
+            const result = await Category.find()
             return result
-        }
+        },
+        /* getOrders : async ()=>{
+            const result = await Category.find()
+            return result
+        } */
             
     },
     Mutation : {
@@ -21,6 +27,7 @@ export const resolvers = {
                 price : args.price,
                 category : args.category,
                 images : args.images,
+                description: args.description,
                 times_ordered : 0
             });
             const res = await newProdcut.save();
@@ -32,6 +39,7 @@ export const resolvers = {
         },
         deleteProduct : async (parent, args) => {
             const res = await Product.findByIdAndDelete(args.id);
+            await cloudinary.v2.uploader.destroy(args.publicid);
             return res
         },
         createCategory: async (parent, args) =>{
@@ -43,13 +51,18 @@ export const resolvers = {
             return res
         },
         uploadImage: async (parent, args)=>{
-            console.log("hi")
-            const result = await cloudinary.v2.uploader.unsigned_upload(args.file, "jvqgsgcl", { public_id: args.public_id });
-            const data = {
-                secure_url: result.secure_url,
-                color : result.colors[0][0]
+            var data = [];
+            for( let i = 0; i < args.files.length ; i++){
+                const result = await cloudinary.v2.uploader.unsigned_upload(args.files[i], "jvqgsgcl", { public_id: `${args.public_id}${i}` });
+                data.push({
+                    path: result.secure_url,
+                    color: result.colors[0][0]
+                })
             }
             return  data 
-        }
+        },
+        /* createOrder: async (parent, args)=>{
+            return
+        } */
     }
 }

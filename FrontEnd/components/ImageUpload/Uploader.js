@@ -8,10 +8,9 @@ function Uploader() {
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
     previewFile(acceptedFiles[0]);
-    setImageFile(acceptedFiles[0]);
+    setImageFile(acceptedFiles);
     /*  */
   }, [ImageFile]);
-
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -21,7 +20,8 @@ function Uploader() {
   };
 
   
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+  const {getRootProps, getInputProps} = useDropzone({onDrop});
+
   const baseStyle = {
     flex: 1,
     display: 'flex',
@@ -30,6 +30,7 @@ function Uploader() {
     width: 240,
     placeContent: 'center',
     padding: '20px',
+    marginBottom: '20px',
     borderWidth: 2,
     borderRadius: 2,
     borderColor: 'var(--txt-grey)',
@@ -38,20 +39,12 @@ function Uploader() {
     color: 'var(--txt-grey)',
     outline: 'none',
     cursor: 'pointer',
-    transition: 'border .24s ease-in-out',
     textAlign: 'center'
   };
-  /* const style = useMemo(() => ({
-    ...baseStyle,
-    ...(isDragActive ? activeStyle : {}),
-    ...(isDragAccept ? acceptStyle : {}),
-    ...(isDragReject ? rejectStyle : {})
-  }), [
-    isDragActive,
-    isDragReject,
-    isDragAccept
-  ]); */
+  
+  
   return (
+          <>
             <div {...getRootProps({style: baseStyle})}>
               {
                 !previewSource && (
@@ -71,7 +64,9 @@ function Uploader() {
                   <input {...getInputProps()} />
                   <p style={{ marginTop: 16}}>اسحب الصورة هنا للتحميل    <FontAwesomeIcon icon='upload'/></p>
             </div>
-    
+            
+                
+          </>
   )
 }
 export default Uploader;

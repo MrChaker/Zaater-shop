@@ -12,7 +12,8 @@ const ProductSchema = new Schema({
     }],
     price:Number,
     times_ordered:Number,
-    category:String
+    category:String,
+    description: String
 
 },{ timestamps :true})
 

@@ -81,7 +81,7 @@ const CategNavigation  = (props) => {
                     <FontAwesomeIcon icon='times' />
                </div>
                 <div >
-                        <Link href="All">
+                        <Link href="/category/All">
                             <a>
                             الكلّ
                             </a>

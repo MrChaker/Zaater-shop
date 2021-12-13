@@ -5,9 +5,7 @@ import { LOAD_Categories} from "../../FrontEnd/graphql/Queries";
 import { useRef, useState, useEffect, createContext } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import swal from 'sweetalert';
-import FileUpload from "../../FrontEnd/hooks/FileUpload";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icon } from "@fortawesome/fontawesome-svg-core";
+
 
 export const UplaodContext = createContext({});
 const NewProduct = () => {
@@ -16,37 +14,28 @@ const NewProduct = () => {
     const name = useRef("");
     const price = useRef("");
     const category = useRef("");
-    const [ ImageFile, setImageFile ] = useState('');
+    const description = useRef("");
 
-    const ImageUpload = async ( public_id, upload_preset, file) =>{
-        
-            swal("...يتم الان تحميل المنتج",{ buttons: false, icon: "success"});
-            const res = await fetch("/api/images",{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin':'*'
-                },
-                body: JSON.stringify({ public_id, upload_preset, file })
-            })
-            const result = await res.json()
-            return result
-    }
-    
+    const [ ImageFile, setImageFile ] = useState([]);
+    const [ images, setImages ] = useState([]);
+    const [ imagesRes, setImagesRes ] = useState([]);
+
     const [ uploadImage ] = useMutation(IMAGE_UPLOAD, {
         onCompleted(data){
-            createProduct({ variables: { 
-                name: name.current.value,
-                price: parseInt(price.current.value) ,
-                category: category.current.value ,
-                images:[
-                   {
-                       path:data.uploadImage.secure_url ,
-                       color:data.uploadImage.color
-                   }    
-                ],
-              }});
-              swal("تمت اضافة منتج جديد",  {icon: "success"});
+                data.uploadImage.forEach((ig)=>{
+                    setImagesRes(imagesRes.push({
+                        path: ig.path,
+                        color: ig.color
+                    }))
+                })
+                createProduct({ variables: { 
+                    name: name.current.value,
+                    price: parseInt(price.current.value) ,
+                    category: category.current.value ,
+                    description: description.current.value ,
+                    images : imagesRes
+                }});
+                swal("تمت اضافة منتج جديد",  {icon: "success"});
         },
         onError(){
             swal(".فشل العملية ، حاول من جديد", {icon: "warning"});
@@ -55,18 +44,21 @@ const NewProduct = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        const reader = new FileReader();
-        reader.readAsDataURL(ImageFile);
-        reader.onloadend = () => {
-            swal("...يتم الان تحميل المنتج",{ buttons: false, icon: "success"});
-            uploadImage({ variables: {
-                file: reader.result,
-                public_id: name.current.value
-            }})
-        } 
-        reader.onerror = () => {
-            swal(".فشل العملية ، حاول من جديد", {icon: "warning"});
-        };
+        setImages([]);
+        ImageFile.forEach((image, i)=>{
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onloadend =  () => {
+                setImages(images.push(reader.result));
+                if ( i == ImageFile.length - 1 ){
+                    swal("...يتم الان تحميل المنتج",{ buttons: false, icon: "success"});
+                    uploadImage({ variables: {
+                        files: images,
+                        public_id: name.current.value
+                    }})
+                }
+            };
+        });        
     }
     
 
@@ -138,9 +130,12 @@ const NewProduct = () => {
 
                 </div>
                 <div className="image_form">
-                    <label htmlFor="product-name">صورة المنتوج</label>
-                    {/* <img id="i" src="/images/sneaker.png" ref={image}/> */}
+                    <label htmlFor="product-name">صور المنتوج</label>
                     <Uploader />
+                </div>
+                <div className="product-desciption">
+                    <label htmlFor="product-desciption">وصف المنتوج</label>
+                    <textarea name="desciption" ref={description} cols="30" rows="5"></textarea>
                 </div>
                 <Button 
                     color =  "var(--pri-theme-dark)"

@@ -3,15 +3,22 @@ import { motion } from 'framer-motion';
 import { DELETE_Product } from '../../graphql/Mutations'
 import { useMutation } from '@apollo/client';
 import { useState } from 'react';
+import swal from 'sweetalert';
 const Card = (props) => {
     const [ deleteProduct ] = useMutation(DELETE_Product);
-    const [deleted, setDeleted] = useState(false);
-    const Delete = (id) =>{
 
-      setDeleted(true);
-      deleteProduct({ variables: { 
-        id: id
-      }});
+    const [deleted, setDeleted] = useState(false);
+    const Delete = (id, name) =>{
+      swal("هل انت متاكّد من حذف المنتج")
+        .then(()=>{
+          setDeleted(true);
+          //remove image from cloud
+          //remove database info
+          deleteProduct({ variables: { 
+            id: id,
+            publicid: name
+          }});
+        })
     }
     
     return ( 
@@ -37,7 +44,7 @@ const Card = (props) => {
                       </a>
                     </Link> }
                     {
-                      props.admin && <a onClick={ () => Delete(props.id) }>
+                      props.admin && <a onClick={ () => Delete(props.id, props.name) }>
                           ازالة المنتج
                         </a>
                     }

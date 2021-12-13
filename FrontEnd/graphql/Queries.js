@@ -8,6 +8,7 @@ import {gql} from "@apollo/client";
         name
         category
         times_ordered
+        description
         images{
             path
             color
