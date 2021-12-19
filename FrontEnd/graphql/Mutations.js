@@ -55,4 +55,17 @@ const IMAGE_UPLOAD = gql`
         }
 }
 `
-export { TIMES_Ordered, NEW_Product, DELETE_Product, NEW_Category, IMAGE_UPLOAD}
+const NEW_Order = gql`
+    mutation createOrder(
+        $products: [OrderedProductInput]!,
+        $buyer: BuyerInput!,
+        $Total: Int!,
+        ) {
+        createOrder(products: $products, buyer:$buyer, Total: $Total ){
+            products{
+                name
+            }
+        }
+}
+`
+export { TIMES_Ordered, NEW_Product, DELETE_Product, NEW_Category, IMAGE_UPLOAD, NEW_Order}

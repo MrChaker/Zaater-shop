@@ -2,13 +2,14 @@ import '../FrontEnd/styles/globals.css'
 import '../FrontEnd/styles/Header.css';
 import '../FrontEnd/styles/Product.css';
 import '../FrontEnd/styles/Excusive.css';
-import '../FrontEnd/styles/reusableNav.css';
 import '../FrontEnd/styles/store.css';
+import '../FrontEnd/styles/reusableNav.css';
 import '../FrontEnd/styles/Card2.css';
 import '../FrontEnd/styles/Cart2.css';
 import '../FrontEnd/styles/categ.css';
 import '../FrontEnd/styles/footer.css';
 import '../FrontEnd/styles/Admin.css';
+import '../FrontEnd/styles/Checkout.css';
 
 import Layout from '../FrontEnd/components/Layouts/Layout';
 import AdminLayout from '../FrontEnd/components/Layouts/AdminLayout';

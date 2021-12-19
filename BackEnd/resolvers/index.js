@@ -5,19 +5,22 @@ import { Order } from '../models/order';
 import cloudinary from 'cloudinary'
 export const resolvers = {
     Query : {
-        getProducts : async () =>{
-           const products = await Product.find().limit(5);
-           console.log(products)
+        getProducts : async (parent, args) =>{
+           const products = await Product.find().skip((args.page-1)*20).limit(20);
              return products
         },
+        getProduct : async (parent, args) =>{
+            const product = await Product.findById(args.id);
+              return product
+         },
         getCategories : async ()=>{ 
             const result = await Category.find()
             return result
         },
-        /* getOrders : async ()=>{
-            const result = await Category.find()
+        getOrders : async ()=>{
+            const result = await Order.find()
             return result
-        } */
+        }
             
     },
     Mutation : {
@@ -54,6 +57,8 @@ export const resolvers = {
             var data = [];
             for( let i = 0; i < args.files.length ; i++){
                 const result = await cloudinary.v2.uploader.unsigned_upload(args.files[i], "jvqgsgcl", { public_id: `${args.public_id}${i}` });
+                console.log(result.colors[0][0]) 
+
                 data.push({
                     path: result.secure_url,
                     color: result.colors[0][0]
@@ -61,8 +66,14 @@ export const resolvers = {
             }
             return  data 
         },
-        /* createOrder: async (parent, args)=>{
-            return
-        } */
+        createOrder: async (parent, args)=>{
+            const newOrder = new Order({
+                products: args.products,
+                buyer: args.buyer,
+                Total: args.Total
+            });
+            const result = await newOrder.save();
+            return result
+        }
     }
 }

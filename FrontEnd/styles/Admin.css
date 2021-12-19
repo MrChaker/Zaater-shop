@@ -8,7 +8,7 @@
 }
 .admin_main {
   flex: 1;
-  padding: 2rem 5rem;
+  padding: 2rem 4rem 2rem 3rem;
 }
 .admin_navBar {
   display: flex;
@@ -20,6 +20,7 @@
   width: 250px;
   background-color: var(--pri-theme-dark);
 }
+
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -35,25 +36,53 @@
   line-height: 1;
 }
 .dashboard .date {
-  color: var(--txt-grey);
-  font-size: 1.2em;
   display: flex;
   justify-content: flex-end;
   gap: 4px;
+}
+.dashboard h4 {
+  color: var(--txt-grey);
+  font-size: 1.2em;
+}
+.index {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+@media screen and (max-width: 1050px) {
+  .index {
+    /* flex-direction: column; */
+    align-items: center;
+  }
+}
+.index > div:first-child {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.index .admin-orders {
+  width: 35%;
+  min-width: 280px;
+  border-radius: 20px;
+  /* box-shadow: 0 1px 10px var(--more-shadow); */
+  padding: 1.4rem;
 }
 .stat_cards {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 70%;
+  width: 100%;
   min-width: 630px;
 }
 .stat_card {
   padding: 1.4rem;
   margin-left: 18px;
   border-radius: 20px;
-  width: 30%;
-  height: 200px;
+  width: 28%;
+  height: 180px;
   color: var(--txt-white);
   font-size: 1.6em;
 }
@@ -67,7 +96,7 @@
   background-image: linear-gradient(150deg, rgb(214, 242, 253), #328658);
 }
 .stat_card img {
-  height: 80px;
+  height: 60px;
   display: block;
   margin: 15px auto;
   opacity: 0.5;
@@ -80,8 +109,8 @@
   margin-top: 2rem;
 }
 .stat_chart {
-  width: 67%;
-  min-width: 612px;
+  width: 95%;
+  min-width: 592px;
   background-color: var(--pri-theme-dark);
   border-radius: 20px;
   padding: 1.2rem 0;

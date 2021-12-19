@@ -9,7 +9,8 @@ import { Sorter, NumberSort, Reverse } from "./Sort";
 const Products = (props) => {
     const router = useRouter();
     const { categ } =  {categ: "All"}/* router.query */ ;
-    const { data, loading } = useQuery(LOAD_Products);
+    const { data, loading } = useQuery(LOAD_Products,
+        {variables:{ page: 1 }});
    
 
     const[products, setProducts]= useState([]);

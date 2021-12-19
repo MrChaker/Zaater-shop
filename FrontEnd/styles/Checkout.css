@@ -1,0 +1,109 @@
+.Checkout {
+  --chk-size: 22px;
+  padding: 2rem 3rem;
+}
+.Checkout > div {
+  display: flex;
+  justify-content: space-between;
+}
+.Checkout form {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.Checkout h1 {
+  transform: translateX(0);
+  width: 100%;
+}
+.Checkout form .input {
+  display: flex;
+  width: 48%;
+  border: 2px solid var(--txt-grey);
+  border-radius: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 2rem;
+  height: 70px;
+}
+.Checkout form .email {
+  width: 100%;
+}
+.Checkout form .input:focus-within {
+  border: 3px solid var(--pri-theme);
+}
+.Checkout form input {
+  border: none;
+  outline: none;
+  border-right: 1px solid var(--bg-grey);
+  width: 90%;
+  font-size: var(--chk-size);
+  margin-right: 8px;
+  padding-right: 12px;
+}
+.Checkout .cart {
+  width: 30%;
+  border-radius: 15px;
+  /* border: 1px solid var(--pri-theme); */
+}
+.Checkout .cart_order {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  font-size: var(--chk-size);
+  gap: 14px;
+}
+.Checkout .total {
+  border-top: 1px solid var(--txt-grey);
+  text-align: center;
+  font-size: var(--chk-size);
+}
+.Checkout .cart_order img {
+  height: 150px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.Checkout .cart h1 svg {
+  cursor: pointer;
+}
+@media screen and (max-width: 960px) {
+}
+@media screen and (max-width: 960px) {
+  .Checkout {
+    --chk-size: 16px;
+  }
+  .Checkout > div {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  .Checkout form {
+    width: 95%;
+  }
+  .Checkout form .input {
+    height: 50px;
+  }
+  .Checkout form svg {
+    font-size: 22px;
+  }
+  .Checkout .cart {
+    width: 100%;
+  }
+  .Checkout .cart > *:not(:first-child) {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  .Checkout {
+    padding: 2rem;
+  }
+  .Checkout form {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .Checkout form .input {
+    width: 100%;
+  }
+}

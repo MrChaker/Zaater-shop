@@ -13,12 +13,12 @@ const AdminLayout = ({ children }) => {
             <div className="admin_main">
                 <div className="dashboard">
                     <h2>لوحة التحكم</h2>
-                    <div className="date">
+                    <h4 className="date">
                         <div>{ d.getFullYear()+" "+ monthNames[d.getMonth()]+" " }</div>
                         <div>{d.getDay()}</div>
-                    </div>
+                    </h4>
                         {children}
-                    </div>
+                </div>
             </div>
         </div>
      );

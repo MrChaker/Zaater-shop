@@ -1,0 +1,9 @@
+.orders_container {
+  color: var(--txt-white);
+}
+.order {
+  padding: 1.2rem;
+  background-color: var(--pri-theme-dark);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}

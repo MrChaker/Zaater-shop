@@ -3,16 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../FrontEnd/components/commun/Button";
 import swal from 'sweetalert';
 import { useQuery, useMutation } from "@apollo/client";
-import { LOAD_Products } from "../../FrontEnd/graphql/Queries";
+import { LOAD_OneProduct } from "../../FrontEnd/graphql/Queries";
 import { Context } from "../../FrontEnd/components/Layouts/Layout";
 import { TIMES_Ordered } from "../../FrontEnd/graphql/Mutations";
 import { useRouter } from "next/router";
 const Product = () => {
-    const {  data } = useQuery(LOAD_Products);   
-    const[ load, setLoad ] = useState(false);    
-    const[selected_product, setSelectedProduct]= useState({});
     const Router = useRouter();
     const {productID} = Router.query ; 
+    const {  data } = useQuery(LOAD_OneProduct,{variables:{id: productID}});   
+    const[ load, setLoad ] = useState(false);    
+    const[selected_product, setSelectedProduct]= useState({});
     const [product, setProduct] = useState([
         {
             path :"",
@@ -29,9 +29,7 @@ const Product = () => {
     ]);
         useEffect(()=>{
             if(data){      
-                setSelectedProduct(data.getProducts.find(pr => 
-                    pr.id === productID
-                ));                           
+                setSelectedProduct(data.getProduct);                           
                 setLoad(true);              
             }    
            
@@ -65,9 +63,13 @@ const Product = () => {
     }
 
     const saveToLocal = () =>{
-        const order = Object.assign({}, selected_product, { image:`${product[0].path}` ,quantity:count })
-        console.log(orders.orders)
-        //order.id 
+        const order = { 
+            product_id: selected_product.id,
+            name: selected_product.name,
+            price: selected_product.price,
+            image:`${product[0].path}` ,
+            quantity:count 
+        }
         let exists = false ;
         let quantity_change = false ;
         orders.orders.forEach( (or, i)=>{
@@ -76,7 +78,6 @@ const Product = () => {
                 if ( order.quantity !== or.quantity){
                     quantity_change = true
                     or.quantity = order.quantity
-                    console.log(or.quantity)
                 }
             }
         })
@@ -109,6 +110,7 @@ const Product = () => {
         setProduct(copy);
         setForRendering(!forRendering);
     }
+    if( !selected_product ) return "this item doesnt exist";
     return ( 
         <>
         <Context.Consumer >

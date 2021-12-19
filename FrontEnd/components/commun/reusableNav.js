@@ -11,14 +11,14 @@ const ReusableNav = (props) => {
             
                 window.addEventListener('scroll', () => {
                     
-                    if (window.pageYOffset > 120) {               
+                    if (window.pageYOffset > 120 && !scrolled) {               
                         setScrolled(true)
-                    } else {
+                    } else if (window.pageYOffset <= 120 && scrolled) {
                         setScrolled(false)
                     }
                 });
             
-        },)
+        },[])
     return ( 
         <nav  className={scrolled ? "scrolledNav": ""}>
             <props.Logo/>

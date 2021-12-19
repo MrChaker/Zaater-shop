@@ -100,13 +100,17 @@ const CartList = () => {
                         </div>
                     </div>
                     <div className="Obtn">
+                        <Link href="/checkout">
+                            <a>
                                 <Button
                                     style={!Orders || Orders.length == 0 ? 'cursor: not-allowed' : ''}
                                     color="var(--pri-theme)"
                                     Size="var(--o-size)"
                                     text="أطلب الان"
                                 />
-                            </div>
+                            </a>    
+                        </Link>
+                    </div>
                 </div> 
             </div>
             </>

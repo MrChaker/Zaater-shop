@@ -5,6 +5,8 @@ import { UplaodContext } from "../../../pages/admin/AddProduct";
 function Uploader() {
   const {ImageFile, setImageFile} = useContext(UplaodContext);
   const [previewSource, setPreviewSource] = useState('');
+
+
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
     previewFile(acceptedFiles[0]);

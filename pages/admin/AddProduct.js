@@ -5,12 +5,17 @@ import { LOAD_Categories} from "../../FrontEnd/graphql/Queries";
 import { useRef, useState, useEffect, createContext } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import swal from 'sweetalert';
+import { useRouter } from "next/router";
 
 
 export const UplaodContext = createContext({});
 const NewProduct = () => {
-
-    const [ createProduct ] = useMutation(NEW_Product);
+    const  router  = useRouter();
+    const [ createProduct ] = useMutation(NEW_Product,{
+        onCompleted(){
+            router.reload(window.location.pathname)
+        }
+    });
     const name = useRef("");
     const price = useRef("");
     const category = useRef("");
@@ -35,6 +40,8 @@ const NewProduct = () => {
                     description: description.current.value ,
                     images : imagesRes
                 }});
+                setImages([]);
+                
                 swal("تمت اضافة منتج جديد",  {icon: "success"});
         },
         onError(){
@@ -44,7 +51,6 @@ const NewProduct = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        setImages([]);
         ImageFile.forEach((image, i)=>{
             const reader = new FileReader();
             reader.readAsDataURL(image);
