@@ -29,7 +29,7 @@ const Product = () => {
     ]);
         useEffect(()=>{
             if(data){      
-                setSelectedProduct(data.getProduct);                           
+                setSelectedProduct(data.getProduct);    
                 setLoad(true);              
             }    
            
@@ -52,22 +52,13 @@ const Product = () => {
         };
     },[orders.orders])
     
-    
-    const [ updateProduct ] = useMutation(TIMES_Ordered);
-
-    const incrementOrder = ()=>{
-        updateProduct({ variables: { 
-            id: selected_product.id,
-            to: selected_product.times_ordered+1
-        }});
-    }
-
     const saveToLocal = () =>{
         const order = { 
             product_id: selected_product.id,
             name: selected_product.name,
             price: selected_product.price,
             image:`${product[0].path}` ,
+            times_ordered: selected_product.times_ordered,
             quantity:count 
         }
         let exists = false ;
@@ -76,7 +67,7 @@ const Product = () => {
             if ( order.id === or.id && order.image === or.image){
                 exists = true ;
                 if ( order.quantity !== or.quantity){
-                    quantity_change = true
+                    quantity_change = true;
                     or.quantity = order.quantity
                 }
             }
@@ -145,7 +136,6 @@ const Product = () => {
                         </div>   
                         <div className="tbn" 
                             onClick={()=>{  
-                                            incrementOrder();
                                             saveToLocal();
                                             setCartItems(orders.orders.length)
                                         }}

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { NEW_Order } from "../FrontEnd/graphql/Mutations"
+import { NEW_Order, TIMES_Ordered } from "../FrontEnd/graphql/Mutations"
 import swal from "sweetalert";
 import Button from "../FrontEnd/components/commun/Button";
 const Checkout = () => {
@@ -21,7 +21,6 @@ const Checkout = () => {
             result += order.price*order.quantity;
         });
         setTotal(result);
-        console.log(result)
     },[Orders])
 
     //buyer Info
@@ -77,7 +76,18 @@ const Checkout = () => {
 
         });
     
-    },[width])
+    },[width]);
+
+    const [ updateProduct ] = useMutation(TIMES_Ordered);
+
+    const incrementOrder = ()=>{
+        Orders.forEach((order)=>{
+            updateProduct({ variables: { 
+                id: order.product_id,
+                to: order.times_ordered + order.quantity
+            }});
+        })
+    }
     return ( 
         <>
             <div className="Checkout" >
@@ -118,7 +128,8 @@ const Checkout = () => {
                                 text = "حفظ المعلومات"
                                 block
                                 onClick = {(e)=>{
-                                    submit(e);
+                                    /* submit(e); */
+                                    incrementOrder();
                                 }}
                             />
                     </form>

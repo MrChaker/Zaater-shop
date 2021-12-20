@@ -5,11 +5,11 @@ import { Order } from '../models/order';
 import cloudinary from 'cloudinary'
 export const resolvers = {
     Query : {
-        getProducts : async (parent, args) =>{
+        getProducts : async (_, args) =>{
            const products = await Product.find().skip((args.page-1)*20).limit(20);
              return products
         },
-        getProduct : async (parent, args) =>{
+        getProduct : async (_, args) =>{
             const product = await Product.findById(args.id);
               return product
          },
@@ -24,7 +24,7 @@ export const resolvers = {
             
     },
     Mutation : {
-        createProduct: async ( parent, args) => {
+        createProduct: async ( _, args) => {
             const newProdcut = new Product({
                 name : args.name,
                 price : args.price,
@@ -36,16 +36,16 @@ export const resolvers = {
             const res = await newProdcut.save();
             return res
         },
-        updateProduct: async ( parent, args )=>{
+        updateProduct: async ( _, args)=>{
             const res = await Product.findByIdAndUpdate( args.id , { times_ordered : args.to });
             return res;
         },
-        deleteProduct : async (parent, args) => {
+        deleteProduct : async (_, args) => {
             const res = await Product.findByIdAndDelete(args.id);
             await cloudinary.v2.uploader.destroy(args.publicid);
             return res
         },
-        createCategory: async (parent, args) =>{
+        createCategory: async (_, args) =>{
             const newCategory = new Category({
                 name : args.name,
                 arabic: args.arabic
@@ -53,7 +53,7 @@ export const resolvers = {
             const res = await newCategory.save();
             return res
         },
-        uploadImage: async (parent, args)=>{
+        uploadImage: async (_, args)=>{
             var data = [];
             for( let i = 0; i < args.files.length ; i++){
                 const result = await cloudinary.v2.uploader.unsigned_upload(args.files[i], "jvqgsgcl", { public_id: `${args.public_id}${i}` });
@@ -66,7 +66,7 @@ export const resolvers = {
             }
             return  data 
         },
-        createOrder: async (parent, args)=>{
+        createOrder: async (_, args)=>{
             const newOrder = new Order({
                 products: args.products,
                 buyer: args.buyer,
