@@ -128,7 +128,7 @@ const Checkout = () => {
                                 text = "حفظ المعلومات"
                                 block
                                 onClick = {(e)=>{
-                                    /* submit(e); */
+                                    submit(e);
                                     incrementOrder();
                                 }}
                             />
