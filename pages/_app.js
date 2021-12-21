@@ -10,6 +10,8 @@ import '../FrontEnd/styles/categ.css';
 import '../FrontEnd/styles/footer.css';
 import '../FrontEnd/styles/Admin.css';
 import '../FrontEnd/styles/Checkout.css';
+import '../FrontEnd/styles/Auth.css';
+
 
 import Layout from '../FrontEnd/components/Layouts/Layout';
 import AdminLayout from '../FrontEnd/components/Layouts/AdminLayout';
@@ -18,8 +20,7 @@ import ApolloProv from '../FrontEnd/components/Graphql/ApolloProv';
 import {fontAW} from '../FrontEnd/fontawsome';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-/* import { SessionProvider } from "next-auth/react"
-import { CloudinaryContext} from 'cloudinary-react'; */
+import { SessionProvider } from "next-auth/react"
 fontAW();
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   
@@ -30,8 +31,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <title> Zaater Shop</title>
       </Head>
       <ApolloProv>
-        {/* <SessionProvider session={session}>  */}
-        {/* <CloudinaryContext cloudName={process.env.NEXT_PUBLIC_CLOUD_NAME} secure="true" upload_preset="jvqgsgcl">   */} 
+        <SessionProvider session={session}> 
+
           <div id="root">
             { router.pathname.includes('/admin') && 
               <AdminLayout> 
@@ -44,8 +45,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               </Layout>
             }
           </div>
-          {/* </CloudinaryContext> */}
-        {/* </SessionProvider> */}  
+          
+        </SessionProvider>
       </ApolloProv>
     </>
   )

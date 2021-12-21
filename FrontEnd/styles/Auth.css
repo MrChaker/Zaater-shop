@@ -1,0 +1,13 @@
+.Auth-container {
+  display: flex;
+  place-content: center;
+}
+.Auth {
+  width: 400px;
+  padding: 2rem;
+  height: 500px;
+  border: 2px solid var(--bg-grey);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,5 +1,4 @@
-
- import Categ from '../FrontEnd/components/homePage/categ';
+import Categ from '../FrontEnd/components/homePage/categ';
 import Exclusive from '../FrontEnd/components/homePage/Excusive';
 import Header from '../FrontEnd/components/homePage/Header'; 
 
