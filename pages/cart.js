@@ -86,33 +86,36 @@ const CartList = () => {
                     </div>
                     
                 </div> }
-                <div className="blank"></div>
-                <div className="cart-sumary">
-                    <div className="Pricing">
-                        <div>
-                            {`${total}D.A `} <span> سعر المشتريات </span>
+                { Orders.length != 0 &&
+                <>
+                    <div className="blank"></div>
+                    <div className="cart-sumary">
+                        <div className="Pricing">
+                            <div>
+                                {`${total}D.A `} <span> سعر المشتريات </span>
+                            </div>
+                            <div>
+                                500 D.A <span>التّوصيل </span>  
+                            </div>
+                            <div>
+                                {`${total+500}D.A `} <span>المجموع </span>  
+                            </div>
                         </div>
-                        <div>
-                            500 D.A <span>التّوصيل </span>  
+                        <div className="Obtn">
+                            <Link href="/checkout">
+                                <a>
+                                    <Button
+                                        
+                                        color="var(--pri-theme)"
+                                        Size="var(--o-size)"
+                                        text="أطلب الان"
+                                    />
+                                </a>    
+                            </Link>
                         </div>
-                        <div>
-                            {`${total+500}D.A `} <span>المجموع </span>  
-                        </div>
-                    </div>
-                    <div className="Obtn">
-                        <Link href="/checkout">
-                            <a>
-                                <Button
-                                    style={!Orders || Orders.length == 0 ? 'cursor: not-allowed' : ''}
-                                    color="var(--pri-theme)"
-                                    Size="var(--o-size)"
-                                    text="أطلب الان"
-                                />
-                            </a>    
-                        </Link>
-                    </div>
-                </div> 
-            </div>
+                    </div>  
+                </> }
+            </div> 
             </>
         }}</Context.Consumer>
      );

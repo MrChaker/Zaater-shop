@@ -1,8 +1,8 @@
 import {gql} from "@apollo/client";
 
  const LOAD_Products = gql`
-    query getProducts($page: Int!){
-        getProducts(page: $page){
+    query getProducts($page: Int!, $Sort: String){
+        getProducts(page: $page, Sort: $Sort){
             id
             price    
             name

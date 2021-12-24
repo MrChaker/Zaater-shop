@@ -1,10 +1,26 @@
-export class Sorter{
-    constructor(array ){
-        this.array = array;
-    }
+import { Query } from 'mongoose';
+import {Product} from '../../../BackEnd/models/product'
+class Sorter{
     Sort(){}
 }
-export class NumberSort extends Sorter{
+
+export class MongoSorter extends Sorter{
+    constructor(  sortBy, direction = 1){
+        this.sortBy = sortBy;
+        this.direction = direction
+    }
+
+    Sort(){
+        console.log(this.direction)
+        return Product.find().sort({ sortBy : this.direction});
+    }
+}
+export class ArraySorter extends Sorter{
+    constructor( array ){
+        this.array = array
+    }
+}
+export class NumberSort extends ArraySorter{
     constructor(array, sortBy){
         super(array);
         this.sortBy = sortBy;
@@ -15,7 +31,7 @@ export class NumberSort extends Sorter{
         })
     }
 }
-export class Reverse extends Sorter{
+export class Reverse extends ArraySorter{
     constructor(array){
         super(array)
     }
@@ -23,4 +39,3 @@ export class Reverse extends Sorter{
         return this.array.reverse()
         }
 }
-

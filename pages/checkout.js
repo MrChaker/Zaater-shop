@@ -43,8 +43,17 @@ const Checkout = () => {
     const submit = (e)=>{
         e.preventDefault();
         swal(`${<FontAwesomeIcon icon="spinner" spin size="4x"/>}`);
+        var products_ = Orders.slice(0);
+        var products = [];
+        products_.forEach(pr => {
+            var copy = Object.assign({}, pr);
+            products.push(copy)
+        })
+        products.forEach(pr =>{
+            delete pr.times_ordered
+        })
         createOrder({ variables:{
-            products:Orders,
+            products,
             buyer: {
                 fullName: fullName.current.value,
                 email: email.current.value,

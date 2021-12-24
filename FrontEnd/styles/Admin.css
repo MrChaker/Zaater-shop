@@ -21,6 +21,17 @@
   background-color: var(--pri-theme-dark);
 }
 
+@media screen and (max-width: 900px) {
+  .admin_navBar {
+    width: 70px;
+  }
+  .admin_navBar .nav_elements p {
+    display: none;
+  }
+  .admin_navBar .nav_elements a div {
+    margin: auto;
+  }
+}
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -44,45 +55,25 @@
   color: var(--txt-grey);
   font-size: 1.2em;
 }
-.index {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: row-reverse;
-  width: 100%;
-}
-@media screen and (max-width: 1050px) {
-  .index {
-    /* flex-direction: column; */
-    align-items: center;
-  }
-}
-.index > div:first-child {
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-.index .admin-orders {
-  width: 35%;
-  min-width: 280px;
+
+.admin-orders {
+  width: 60%;
+  min-width: 620px;
   border-radius: 20px;
-  /* box-shadow: 0 1px 10px var(--more-shadow); */
-  padding: 1.4rem;
 }
 .stat_cards {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
+  width: 60%;
   min-width: 630px;
 }
 .stat_card {
   padding: 1.4rem;
   margin-left: 18px;
   border-radius: 20px;
-  width: 28%;
-  height: 180px;
+  width: 200px;
+  aspect-ratio: 1/1;
   color: var(--txt-white);
   font-size: 1.6em;
 }
@@ -109,8 +100,8 @@
   margin-top: 2rem;
 }
 .stat_chart {
-  width: 95%;
-  min-width: 592px;
+  width: 60%;
+  min-width: 620px;
   background-color: var(--pri-theme-dark);
   border-radius: 20px;
   padding: 1.2rem 0;
@@ -238,5 +229,17 @@
   .admin_card_cont .details {
     --card-txt: 2.4vw;
     padding: 22px;
+  }
+}
+@media screen and (max-width: 780px) {
+  .admin_page {
+    --txt-size: 12px;
+  }
+  .stat_cards,
+  .admin-orders {
+    min-width: 500px;
+  }
+  .stat_card img {
+    height: 40px;
   }
 }

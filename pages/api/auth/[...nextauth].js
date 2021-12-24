@@ -7,12 +7,24 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
     }),
     // ...add more providers here
   ],
-  theme: {
+  pages:{
+    signIn: "/auth/login",
+    newUser: "/auth/signup"
+  }
+  /* theme: {
+    
     colorScheme: "light", // "auto" | "dark" | "light"
     brandColor: "#fe5349", // Hex color code
     logo: "/images/Redshirt.jpg" // Absolute URL to image
-  }
+  } */
 })

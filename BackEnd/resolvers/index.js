@@ -1,17 +1,31 @@
 import { Product } from '../models/product';
 import { Category } from '../models/category';
 import { Order } from '../models/order';
-
+import { MongoSorter } from '../../FrontEnd/components/Product/Sort';
 import cloudinary from 'cloudinary'
 export const resolvers = {
     Query : {
         getProducts : async (_, args) =>{
-           const products = await Product.find().skip((args.page-1)*20).limit(20);
-             return products
+            if ( !args.Sort || args.Sort == "الاحدث"){
+                const products = await Product.find().skip((args.page-1)*20).limit(20);
+                return products
+            }
+            var products = [];
+            switch(args.Sort){
+                case "الاكثر طلباً":
+                    products = await Product.find().sort({times_ordered : -1}).skip((args.page-1)*20).limit(20);
+                    return products;
+                case "الأغلى سعراً":
+                    products = await Product.find().sort({price: -1}).skip((args.page-1)*20).limit(20);
+                    return products;
+                case "الأرخص سعراً":
+                    products = await Product.find().sort({price: 1}).skip((args.page-1)*20).limit(20);
+                    return products;    
+            } 
         },
         getProduct : async (_, args) =>{
-            const product = await Product.findById(args.id);
-              return product
+            const product = await Product.findById(args.id);  
+            return product
          },
         getCategories : async ()=>{ 
             const result = await Category.find()

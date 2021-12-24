@@ -45,7 +45,8 @@ export const typeDefs = gql`
     }
 
     type Query{
-        getProducts(page: Int): [ProductType],
+        getProducts(page: Int, Sort: String): [ProductType],
+        """ getSortedProducts(Sort: String): [ProductType], """
         getProduct(id: String): ProductType,
         getCategories : [CategoryType],
         getOrders: [OrderType]

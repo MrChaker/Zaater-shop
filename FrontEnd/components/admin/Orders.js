@@ -13,6 +13,12 @@ const Orders = () => {
     return ( 
         <>
         <div className={styles.orders_container}>
+            <div  className={styles.order}>
+                        <p>{`شاكر عطاءالله`}</p>
+            </div>
+            <div  className={styles.order}>
+                        <p>{`شاكر عطاءالله`}</p>
+            </div>
             {
                 Orders.map((or, i)=>(
                     <div key={i} className={styles.order}>

@@ -1,6 +1,4 @@
 import { useQuery } from "@apollo/client";
-import Image from "next/image";
-import Head from "next/head"
 import { LOAD_Categories } from '../../FrontEnd/graphql/Queries';
 import Products from '../../FrontEnd/components/Product/Store'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +18,7 @@ const Store = () => {
                         
                             <Sidebar state={sideBarState}/>
                             <div className="ad-background">
-                            {/*  <img src="/images/zaaterbackground.jpg" alt="ad" layout='responsive' width='100%' height='100%' /> */}
+                             <img src="/images/zaaterbackground.jpg" alt="ad" layout='responsive' width='100%' height='100%' />
                             </div>
                         
                     </div>    

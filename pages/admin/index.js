@@ -4,8 +4,7 @@ import Sales from "../../FrontEnd/components/Charts/sales";
 const Admin = () => {
         
     return ( 
-        <div className="index">
-            <div>
+        <>
                 <div className="stat_cards">
                     <div className="stat_card purple">
                         <div className="stat_name">المبيعات</div>
@@ -27,14 +26,13 @@ const Admin = () => {
                 </div>
                 <h3>المدخول</h3>
                 <div className="stat_chart">
-                {/* <Sales/> */}
+                <Sales/>
                 </div>
-            </div>
-            <div className="admin-orders">
                 <h3>الطلبات الاخيرة</h3>
-                <Orders/>
-            </div>
-        </div>
+                <div className="admin-orders">
+                    <Orders/>
+                </div>
+        </>
      );
 }
  
