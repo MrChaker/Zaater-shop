@@ -17,9 +17,9 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
+  secret: process.env.secret,
   pages:{
-    signIn: "/auth/login",
-    newUser: "/auth/signup"
+    signIn: "/auth/signup"
   }
   /* theme: {
     

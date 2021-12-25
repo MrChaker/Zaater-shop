@@ -17,9 +17,7 @@ const Store = () => {
                     <div className='main'>
                         
                             <Sidebar state={sideBarState}/>
-                            <div className="ad-background">
                              <img src="/images/zaaterbackground.jpg" alt="ad" layout='responsive' width='100%' height='100%' />
-                            </div>
                         
                     </div>    
                 <div className="Store-products">

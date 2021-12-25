@@ -11,7 +11,7 @@ const Nav = (props) => {
                 },
                 {
                     name:<FontAwesomeIcon icon="user-circle" color="white" />,
-                    link:"/auth/signUp", 
+                    link:"/auth/signup", 
                     id : 2
                 },
                 {

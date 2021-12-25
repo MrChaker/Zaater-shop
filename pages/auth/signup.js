@@ -11,8 +11,7 @@ const Signup = () => {
         if (session){
             signOut();
         }else{
-            signIn("google")
-              .then(()=>Router.push("/category/All"))
+            signIn('google')
         }
     }
     return ( 
