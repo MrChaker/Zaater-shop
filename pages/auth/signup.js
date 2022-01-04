@@ -8,12 +8,8 @@ const Signup = () => {
     console.log(session);
 
     const SignIn = async ()=>{
-            signIn('google', { callbackUrl: '/category/All' })
-              .then((res)=>{
-                if ( res.ok ){
-
-                } 
-              })
+            signIn('google')
+              
     }
     
     /* const SignOut = ()=>{
