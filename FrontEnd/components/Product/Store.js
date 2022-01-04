@@ -4,11 +4,12 @@ import Card2 from "../../components/commun/Card2"
 import {  LOAD_Products } from '../../graphql/Queries';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from 'next/router'
-
+import  Button  from '../commun/Button'
 const Products = (props) => {
     const router = useRouter();
+    const [ page, setPage ] = useState(1);
     const { categ } =  {categ: "All"}/* router.query */ ;
-    const [getProducts, { called, data, loading }] = useLazyQuery(LOAD_Products,{variables:{ page: 1, Sort: props.Sort }});
+    const [getProducts, { called, data, loading }] = useLazyQuery(LOAD_Products,{variables:{ page: page, Sort: props.Sort }});
     const[products, setProducts]= useState([]);
     useEffect(()=>{
             if(!called){
@@ -23,7 +24,7 @@ const Products = (props) => {
                     setProducts(copy);
                 }
             }    
-    }, [categ,props.Sort,loading])
+    }, [categ,props.Sort,loading,props.page])
     return ( 
         <>
             <div  dir="rtl" className={ router.pathname.includes('/admin') ? "admin_card_cont" : "card-container"}>
@@ -43,8 +44,15 @@ const Products = (props) => {
                         />
                     
                     )) }
+                
             </div>
-            
+            <Button 
+                    text = "المزيد"
+                    color = "var(--pri-theme-dark)"
+                    outline
+                    style = " width: 200px; margin: 12px auto "
+                    onClick = {(()=>setPage(page+1))}
+            />
         </>
      ); 
 } 

@@ -10,7 +10,6 @@ const apollo_server = new ApolloServer({
                        resolvers
                       });
 const startServer = apollo_server.start();
-
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
@@ -24,7 +23,6 @@ export const config = {
       bodyParser: false,
     },
   }
-
 export default async function handler(req, res){
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader(

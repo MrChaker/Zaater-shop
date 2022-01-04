@@ -1,25 +1,26 @@
 import { Product } from '../models/product';
 import { Category } from '../models/category';
 import { Order } from '../models/order';
-import { MongoSorter } from '../../FrontEnd/components/Product/Sort';
+import { User } from '../models/user';
+
 import cloudinary from 'cloudinary'
 export const resolvers = {
     Query : {
         getProducts : async (_, args) =>{
             if ( !args.Sort || args.Sort == "الاحدث"){
-                const products = await Product.find().skip((args.page-1)*20).limit(20);
+                const products = await Product.find().limit(25*args.page);
                 return products
             }
             var products = [];
             switch(args.Sort){
                 case "الاكثر طلباً":
-                    products = await Product.find().sort({times_ordered : -1}).skip((args.page-1)*20).limit(20);
+                    products = await Product.find().sort({times_ordered : -1}).limit(25*args.page);
                     return products;
                 case "الأغلى سعراً":
-                    products = await Product.find().sort({price: -1}).skip((args.page-1)*20).limit(20);
+                    products = await Product.find().sort({price: -1}).limit(25*args.page);
                     return products;
                 case "الأرخص سعراً":
-                    products = await Product.find().sort({price: 1}).skip((args.page-1)*20).limit(20);
+                    products = await Product.find().sort({price: 1}).limit(25*args.page);
                     return products;    
             } 
         },
@@ -87,6 +88,15 @@ export const resolvers = {
                 Total: args.Total
             });
             const result = await newOrder.save();
+            return result
+        },
+        createUser: async (_, args)=>{
+            const newUser = new User({
+                name: args.name,
+                email: args.email,
+                image: args.image
+            })
+            const result = await newUser.save();
             return result
         }
     }

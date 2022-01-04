@@ -2,8 +2,8 @@
   width: 17vw;
   height: 27vw;
   background: #fff;
-  -webkit-box-shadow: 2px 0 20px var(--more-shadow);
-  box-shadow: 2px 0 20px var(--more-shadow);
+  /* -webkit-box-shadow: 2px 0 20px var(--more-shadow);
+  box-shadow: 2px 0 20px var(--more-shadow); */
   border-radius: 5px;
   overflow: hidden;
   transition: 1s;

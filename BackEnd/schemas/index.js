@@ -39,6 +39,13 @@ export const typeDefs = gql`
         Total: Int
     }
 
+    type UserType{
+        id: String,
+        name: String,
+        email: String,
+        image: String
+    }
+
     type CloudinaryFile{
         path: String,
         color: String
@@ -78,6 +85,7 @@ export const typeDefs = gql`
         deleteProduct(id: String, publicid: String): ProductType,
         createCategory(name: String, arabic: String): CategoryType,
         uploadImage(files: [String], public_id: String): [CloudinaryFile],
-        createOrder(products: [OrderedProductInput], buyer: BuyerInput, Total: Int): OrderType
+        createOrder(products: [OrderedProductInput], buyer: BuyerInput, Total: Int): OrderType,
+        createUser(name: String, email:String, image: String): UserType
     }
 `

@@ -20,7 +20,7 @@ import ApolloProv from '../FrontEnd/components/Graphql/ApolloProv';
 import {fontAW} from '../FrontEnd/fontawsome';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { SessionProvider } from "next-auth/react"
+import { SessionProvider, useSession } from "next-auth/react"
 fontAW();
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   
@@ -45,7 +45,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               </Layout>
             }
           </div>
-          
         </SessionProvider>
       </ApolloProv>
     </>
