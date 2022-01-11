@@ -1,0 +1,6 @@
+{
+    "watch": ["BackEnd"],
+    "ignore": ["node_modules", ".next"],
+    "ext": "js json"
+    
+  }

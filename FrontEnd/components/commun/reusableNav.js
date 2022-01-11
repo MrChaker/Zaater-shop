@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import  Link  from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Search from '../Product/Search';
 
 const ReusableNav = (props) => {
 
@@ -18,16 +18,13 @@ const ReusableNav = (props) => {
                     }
                 });
             
-        },[])
+        },[]);
+
+        
     return ( 
         <nav  className={scrolled ? "scrolledNav": ""}>
             <props.Logo/>
-            <div className="search">
-                <input type="text" className="search-bar" placeholder={"... " + `بحث`}/>
-                <div className="search-logo">
-                    <FontAwesomeIcon icon="search" color="black"/>
-                </div>
-            </div>
+            <Search />
             <ul>
                 { props.navs.map( (nav) =>(
                     <Link href={nav.link} key={nav.id} >

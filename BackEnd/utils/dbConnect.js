@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 
 
 const connection = {}
 
-export default async function Connect(){
+module.exports =  async function Connect(){
     Object.keys(mongoose.connection.models).forEach(key => {
         delete mongoose.connection.models[key];
       });

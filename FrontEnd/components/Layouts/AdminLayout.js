@@ -49,7 +49,7 @@ const AdminNavBar = ()=>{
                     </div>
                 </a>
             </Link>
-                <Link href="/admin/products">
+                <Link href="/admin/products/All">
                 <a>
                     <p>المنتجات</p>
                     <div>

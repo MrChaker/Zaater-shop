@@ -12,7 +12,7 @@ import '../FrontEnd/styles/Admin.css';
 import '../FrontEnd/styles/Checkout.css';
 import '../FrontEnd/styles/Auth.css';
 
-
+import { createContext, useState } from 'react';
 import Layout from '../FrontEnd/components/Layouts/Layout';
 import AdminLayout from '../FrontEnd/components/Layouts/AdminLayout';
 import ApolloProv from '../FrontEnd/components/Graphql/ApolloProv';
@@ -20,11 +20,16 @@ import ApolloProv from '../FrontEnd/components/Graphql/ApolloProv';
 import {fontAW} from '../FrontEnd/fontawsome';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { SessionProvider, useSession } from "next-auth/react"
+import { SessionProvider } from "next-auth/react"
 fontAW();
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+
+export const SortingContext = createContext("");
+
+export function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   
   const router = useRouter();
+  const [ value, setValue] = useState("الاكثر طلباً");
+
   return(
     <>
       <Head >
@@ -32,19 +37,20 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       </Head>
       <ApolloProv>
         <SessionProvider session={session}> 
-
-          <div id="root">
-            { router.pathname.includes('/admin') && 
-              <AdminLayout> 
-                <Component {...pageProps} />
-              </AdminLayout>
-            }
-            { !router.pathname.includes('/admin') && 
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            }
-          </div>
+          <SortingContext.Provider value = {{ value, setValue }}>
+            <div id="root">
+              { router.pathname.includes('/admin') && 
+                <AdminLayout> 
+                  <Component {...pageProps} />
+                </AdminLayout>
+              }
+              { !router.pathname.includes('/admin') && 
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              }
+            </div>
+          </SortingContext.Provider>
         </SessionProvider>
       </ApolloProv>
     </>

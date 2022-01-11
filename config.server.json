@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "noEmit": false,
+      "outDir": "dist"
+    },
+    "include": ["BackEnd/**/*.js"]
+    
+}

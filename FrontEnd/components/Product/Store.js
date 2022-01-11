@@ -8,28 +8,35 @@ import  Button  from '../commun/Button'
 const Products = (props) => {
     const router = useRouter();
     const [ page, setPage ] = useState(1);
-    const { categ } =  {categ: "All"}/* router.query */ ;
-    const [getProducts, { called, data, loading }] = useLazyQuery(LOAD_Products,{variables:{ page: page, Sort: props.Sort }});
+    const [ search, setSearch ] = useState('');
+    const { categ } =   router.query ;
+    
+    console.log(search)
+    const [getProducts, { called, data, loading }] = useLazyQuery(LOAD_Products,{variables:{ page: page, Sort: props.Sort, search: search }});
     const[products, setProducts]= useState([]);
+
     useEffect(()=>{
+            if( location.search != '' ){
+                setSearch(location.search.slice(8, location.search.length))
+            }
+
             if(!called){
                 getProducts();
             }
             if(data){
                 var copy = Array.from(data.getProducts);
-                if(categ == "All" || categ == "all"){
+                if(categ.toLowerCase() == "all"){
                     setProducts(copy);
                 }else{
                     copy = copy.filter( pr => pr.category === categ);
                     setProducts(copy);
                 }
             }    
-    }, [categ,props.Sort,loading,props.page])
+    }, [categ,props.Sort,loading,props.page, search])
     return ( 
         <>
             <div  dir="rtl" className={ router.pathname.includes('/admin') ? "admin_card_cont" : "card-container"}>
                 
-                {loading && <FontAwesomeIcon  icon='spinner' size='3x' spin />} 
                 { products.map((product,i)=>(
                     
                         <Card2   
@@ -44,6 +51,7 @@ const Products = (props) => {
                         />
                     
                     )) }
+                {loading && <FontAwesomeIcon  icon='spinner' size='3x' spin />} 
                 
             </div>
             <Button 

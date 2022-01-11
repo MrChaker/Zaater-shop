@@ -2,15 +2,14 @@ import { useQuery } from "@apollo/client";
 import { LOAD_Categories } from '../../FrontEnd/graphql/Queries';
 import Products from '../../FrontEnd/components/Product/Store'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect,  useState } from "react";
 import Link from "next/link";
+import { SortingContext } from "../_app";
+import OrderBy from '../../FrontEnd/components/Product/OrderBy'
+
 const Store = () => {
-    const [ render, setRender] = useState(false);
     const [ sideBarState, setSideBarState ] = useState(false);
-    const OrderBy = useRef("الاكثر طلباً");
-    const changeOrder = ()=>{
-        setRender(!render);
-    }
+    const { value } = useContext(SortingContext)
     return ( 
         <>
             <div className="Store">
@@ -28,14 +27,9 @@ const Store = () => {
                     />
                     <div className="OrderBy">
                         <p> المنتجات : 45</p>
-                        <select name="OrderBy" id="OrderBy" ref={OrderBy} onChange={changeOrder} >
-                            <option value="الاكثر طلباً"> الاكثر طلباً</option>
-                            <option value="الاحدث"> الاحدث</option>
-                            <option value="الأرخص سعراً"> الأرخص سعراً</option>
-                            <option value="الأغلى سعراً"> الأغلى سعراً</option>
-                        </select>
-                </div>  
-                    <Products Sort={OrderBy.current.value}/>
+                        <OrderBy />
+                    </div>  
+                    <Products Sort={value}/>
                 </div>
             </div>
             

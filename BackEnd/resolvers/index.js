@@ -1,29 +1,35 @@
-import { Product } from '../models/product';
-import { Category } from '../models/category';
-import { Order } from '../models/order';
-import { User } from '../models/user';
+const  Product  = require( '../models/product');
+const  Category  = require( '../models/category');
+const  Order  = require( '../models/order');
+const  User  = require( '../models/user');
 
-import cloudinary from 'cloudinary'
-export const resolvers = {
+const cloudinary = require( 'cloudinary');
+
+module.exports =  resolvers = {
     Query : {
         getProducts : async (_, args) =>{
             if ( !args.Sort || args.Sort == "الاحدث"){
-                const products = await Product.find().limit(25*args.page);
+                console.log(args.search + " 55 ")
+                const products = await Product.find({ name: {$regex:args.search,$options:"$i"} }).limit(25*args.page);
                 return products
             }
             var products = [];
             switch(args.Sort){
                 case "الاكثر طلباً":
-                    products = await Product.find().sort({times_ordered : -1}).limit(25*args.page);
+                    products = await Product.find({ name: {$regex:args.search,$options:"$i"} }).sort({times_ordered : -1}).limit(25*args.page);
                     return products;
                 case "الأغلى سعراً":
-                    products = await Product.find().sort({price: -1}).limit(25*args.page);
+                    products = await Product.find({ name: {$regex:args.search,$options:"$i"} }).sort({price: -1}).limit(25*args.page);
                     return products;
                 case "الأرخص سعراً":
-                    products = await Product.find().sort({price: 1}).limit(25*args.page);
+                    products = await Product.find({ name: {$regex:args.search,$options:"$i"} }).sort({price: 1}).limit(25*args.page);
                     return products;    
             } 
         },
+        /* searchProduct : async (_, args) =>{
+            const products = await Product.find({name : args.text + /./g})  
+            return products
+        }, */
         getProduct : async (_, args) =>{
             const product = await Product.findById(args.id);  
             return product

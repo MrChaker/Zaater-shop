@@ -1,5 +1,5 @@
-import { gql } from 'apollo-server-micro';
-export const typeDefs = gql`
+const { gql } = require( 'apollo-server-express' );
+module.exports =  typeDefs = gql`
     type ImageType {
         path: String,
         color:String
@@ -52,8 +52,7 @@ export const typeDefs = gql`
     }
 
     type Query{
-        getProducts(page: Int, Sort: String): [ProductType],
-        """ getSortedProducts(Sort: String): [ProductType], """
+        getProducts(page: Int, Sort: String, search: String): [ProductType],
         getProduct(id: String): ProductType,
         getCategories : [CategoryType],
         getOrders: [OrderType]

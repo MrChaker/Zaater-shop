@@ -1,17 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
-import Button from '../../FrontEnd/components/commun/Button';
-import  Products  from "../../FrontEnd/components/Product/Store";
+import { useContext } from "react";
+import Search from "../../../FrontEnd/components/Product/Search";
+import Button from '../../../FrontEnd/components/commun/Button';
+import  Products  from "../../../FrontEnd/components/Product/Store";
+import { SortingContext } from "../../_app";
 const Admin_Products = () => {
+    const { value } = useContext(SortingContext)
     return ( 
         <>
             <div className="toolBar">
-                <div className="search">
-                        <input type="text" className="search-bar" placeholder={"... " + `بحث`}/>
-                        <div className="search-logo">
-                            <FontAwesomeIcon icon="search" color="grey"/>
-                        </div>
-                </div> 
+                <Search />
                 <Link href="/admin/AddProduct">
                     <a>
                         <Button 
@@ -25,8 +24,12 @@ const Admin_Products = () => {
                 </Link>
                 
             </div>
+            <div className="OrderBy">
+                <p> المنتجات : 45</p>
+                <OrderBy />
+            </div>  
             <div className="admin_products">
-                <Products Sort={"الاكثر طلباً"}/>
+                <Products Sort={ value }/>
             </div>
 
             
