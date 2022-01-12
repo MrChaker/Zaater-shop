@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon BackEnd/Server.js",
     "build": "next build",
-    "start": "SET NODE_ENV=production && node BackEnd/Server.js",
+    "start": "NODE_ENV=production && node BackEnd/Server.js",
     "lint": "next lint",
     "test": "next ./App.test.js"
   },
