@@ -11,7 +11,7 @@ const ApolloProv = (props) => {
     })
     const link = from([
         errorLink,
-        new HttpLink({ uri : `${process.env.PORT}"/api/graphql"`})
+        new HttpLink({ uri : `${process.env.NEXT_PUBLIC_PORT}"/api/graphql"`})
     ])
 
     const client = new ApolloClient({
