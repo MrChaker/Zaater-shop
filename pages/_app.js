@@ -15,7 +15,7 @@ import '../FrontEnd/styles/Auth.css';
 import { createContext, useState } from 'react';
 import Layout from '../FrontEnd/components/Layouts/Layout';
 import AdminLayout from '../FrontEnd/components/Layouts/AdminLayout';
-import ApolloProv from '../FrontEnd/components/Graphql/ApolloProv';
+import ApolloProv from '../FrontEnd/graphql/ApolloProv';
 /* import { ChakraProvider } from "@chakra-ui/react" */
 import {fontAW} from '../FrontEnd/fontawsome';
 import Head from 'next/head';
