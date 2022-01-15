@@ -9,7 +9,11 @@ import OrderBy from '../../FrontEnd/components/Product/OrderBy'
 
 const Store = () => {
     const [ sideBarState, setSideBarState ] = useState(false);
-    const { value } = useContext(SortingContext)
+    const { value } = useContext(SortingContext);
+    const [ searched, setSearched ] = useState("");
+    useEffect(()=>{
+        setSearched( location.search ? location.search.slice(8, location.search.length): '')
+    },[])
     return ( 
         <>
             <div className="Store">
@@ -28,6 +32,17 @@ const Store = () => {
                     <div className="OrderBy">
                         <p> المنتجات : 45</p>
                         <OrderBy />
+                    </div>
+                    <div className="searchTag">
+                    {
+                        searched != "" &&
+                        <Button 
+                            normal
+                            color = "var(--bg-grey)"
+                            text = { searched }
+                            rightIcon = { <FontAwsomeIcon icon='times' /> }
+                        />
+                    }
                     </div>  
                     <Products Sort={value}/>
                 </div>

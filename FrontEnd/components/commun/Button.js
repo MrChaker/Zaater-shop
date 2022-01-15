@@ -36,7 +36,7 @@ const Button = (props) => {
         
         ${(props) => props.normal && css`            
             ${background}
-            color: white;
+            color: ${ props.txtColor || 'white' };
         `}
         ${props.style}
     `;  

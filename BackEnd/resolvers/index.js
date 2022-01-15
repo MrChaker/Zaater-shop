@@ -77,7 +77,7 @@ module.exports =  resolvers = {
         uploadImage: async (_, args)=>{
             var data = [];
             for( let i = 0; i < args.files.length ; i++){
-                const result = await cloudinary.v2.uploader.unsigned_upload(args.files[i], "jvqgsgcl", { public_id: `${args.public_id}${i}` });
+                const result = await cloudinary.v2.uploader.unsigned_upload(args.files[i], process.env.CLOUD_ASSET , { public_id: `${args.public_id}${i}` });
                 console.log(result.colors[0][0]) 
 
                 data.push({

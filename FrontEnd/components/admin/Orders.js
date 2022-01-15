@@ -9,18 +9,13 @@ const Orders = () => {
         if(data){
             setOrders(data.getOrders)
         }
-    }, [data])
+    }, [data]);
+    
     return ( 
         <>
         <div className={styles.orders_container}>
-            <div  className={styles.order}>
-                        <p>{`شاكر عطاءالله`}</p>
-            </div>
-            <div  className={styles.order}>
-                        <p>{`شاكر عطاءالله`}</p>
-            </div>
             {
-                Orders.map((or, i)=>(
+                Orders.slice(0, 10).map((or, i)=>(
                     <div key={i} className={styles.order}>
                         <p>{or.buyer.fullName}</p>
                     </div>

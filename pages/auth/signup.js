@@ -1,21 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSession, signIn, signOut } from "next-auth/react"
-import { useRouter } from "next/router";
 import  Button  from "../../FrontEnd/components/commun/Button"
 
 const Signup = () => {
-    const { data: session, status } = useSession();
-    console.log(session);
-
-    const SignIn = async ()=>{
-            signIn('google')
-              
-    }
     
-    /* const SignOut = ()=>{
-        signOut();
-    } */
-    if (status === "authenticated") {
+    /* 
         return (
             <>
             <div className="Auth-container">
@@ -31,7 +19,7 @@ const Signup = () => {
             </div> 
             </>
         )
-    }
+    } */
     return ( 
         <>
             <div className="Auth-container">
@@ -41,7 +29,7 @@ const Signup = () => {
                         color = "#ea4335"
                         text = "استخدام حساب غوغل"
                         block
-                        onClick = {SignIn}
+                        onClick = {()=>{}}
                         icon = {<FontAwesomeIcon icon="ghost" />}
                     /> 
                     <Button 
@@ -49,7 +37,7 @@ const Signup = () => {
                         color = "#1877F2"
                         text = "استخدام حساب فيسبوك"
                         block
-                        onClick = {SignIn}
+                        onClick = {()=>{}}
                         icon = {<FontAwesomeIcon icon="ghost" />}
                     /> 
 
