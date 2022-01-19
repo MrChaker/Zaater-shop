@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/callback",
+      callbackURL: `${process.env.NEXTAUTH_URL}/auth/google/callback`,
     },
     async (req, accessToken, refreshToken, profile, cb) => {
       console.log('logging...');
