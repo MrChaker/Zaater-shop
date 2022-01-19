@@ -2,7 +2,6 @@ import Orders from "../../FrontEnd/components/admin/Orders";
 import Sales from "../../FrontEnd/components/Charts/sales";
 
 const Admin = () => {
-        
     return ( 
         <>
                 <div className="stat_cards">
@@ -35,5 +34,4 @@ const Admin = () => {
         </>
      );
 }
- 
 export default Admin;

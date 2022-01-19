@@ -12,6 +12,10 @@ const Admin_Products = () => {
     useEffect(()=>{
         setSearched( location.search ? location.search.slice(8, location.search.length): '')
     },[])
+    const rmSearch = () => {
+        Router.push('/admin/products/All');
+        setSearched('')
+    }
     return ( 
         <>
             <div className="toolBar">
@@ -43,7 +47,7 @@ const Admin_Products = () => {
                             text = { searched }
                             righticon = { <FontAwesomeIcon icon='times' /> }
                             txtColor = "black"
-                            onClick = { ()=> location.assign( "/admin/products/All" ) }
+                            onClick = { rmSearch }
                         />
             }
             </div>

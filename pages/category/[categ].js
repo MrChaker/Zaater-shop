@@ -6,7 +6,8 @@ import React, { useContext, useEffect,  useState } from "react";
 import Link from "next/link";
 import { SortingContext } from "../_app";
 import OrderBy from '../../FrontEnd/components/Product/OrderBy'
-
+import Button from '../../FrontEnd/components/commun/Button'
+import Router from 'next/router'
 const Store = () => {
     const [ sideBarState, setSideBarState ] = useState(false);
     const { value } = useContext(SortingContext);
@@ -14,6 +15,10 @@ const Store = () => {
     useEffect(()=>{
         setSearched( location.search ? location.search.slice(8, location.search.length): '')
     },[])
+    const rmSearch = ()=>{
+        Router.push('/category/All');
+        setSearched('');
+    }
     return ( 
         <>
             <div className="Store">
@@ -35,12 +40,13 @@ const Store = () => {
                     </div>
                     <div className="searchTag">
                     {
-                        searched != "" &&
+                        searched && searched != "" &&
                         <Button 
                             normal
                             color = "var(--bg-grey)"
                             text = { searched }
-                            rightIcon = { <FontAwsomeIcon icon='times' /> }
+                            righticon = { <FontAwesomeIcon icon='times' /> }
+                            onClick = {rmSearch}
                         />
                     }
                     </div>  

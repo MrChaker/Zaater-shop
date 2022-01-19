@@ -1,38 +1,43 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../commun/logo";
 import Link from 'next/link'
-import Layout from "./Layout";
+import {useContext} from 'react'
+import { UserContext } from '../../../pages/_app'
+import Layout from './Layout'
+
 const AdminLayout = ({ children }) => {
     const monthNames = ["جانفي", "فيفري", "مارس", "أفريل", "ماي", "جوان",
     "جويلية", "أوت", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
     ];
     const d = new Date();
-
-    //check authentication
-        
-    return ( 
-        <div className="admin_page">
-            <AdminNavBar />
-            <div className="admin_main">
-                <div className="dashboard">
-                    <h2>لوحة التحكم</h2>
-                    <h4 className="date">
-                        <div>{ d.getFullYear()+" "+ monthNames[d.getMonth()]+" " }</div>
-                        <div>{d.getDay()}</div>
-                    </h4>
-                        {children}
-                </div>
-            </div>
-        </div>
-     );
-    
-    /* return( 
-        <Layout>
-            <h1>404</h1>
+    const { user } = useContext(UserContext);
+    if ( user.isAuthenticated && user.info.isAdmin ){
+        return (
+                <>
+                <div className="admin_page">
+                    <AdminNavBar />
+                    <div className="admin_main">
+                        <div className="dashboard">
+                            <h2>لوحة التحكم</h2>
+                            <h4 className="date">
+                                <div>{ d.getFullYear()+" "+ monthNames[d.getMonth()]+" " }</div>
+                                <div>{d.getDay()}</div>
+                            </h4>
+                                { 
+                                children
+                                }
+                        </div>
+                    </div>
+                </div>  
+            </>
+        );
+    }
+    return(
+        <Layout >
+           <p> 404 </p>
         </Layout>
-    )  */
+    )   
 }
-
 const AdminNavBar = ()=>{
     return(
         <div className="admin_navBar">
@@ -58,4 +63,6 @@ const AdminNavBar = ()=>{
         </div>
     )
 }
+
 export default AdminLayout;
+

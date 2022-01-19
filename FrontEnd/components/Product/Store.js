@@ -10,8 +10,6 @@ const Products = (props) => {
     const [ page, setPage ] = useState(1);
     const [ search, setSearch ] = useState('');
     const { categ } =   router.query ;
-    
-    console.log(search)
     const [getProducts, { called, data, loading }] = useLazyQuery(LOAD_Products,{variables:{ page: page, Sort: props.Sort, search: search }});
     const[products, setProducts]= useState([]);
 
