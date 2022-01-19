@@ -57,9 +57,6 @@ const CartList = () => {
                         <h3>الكمّية</h3>
                         <h3>السّعر</h3>
                         <h3>المنتج</h3>
-                        <Link href="/admin">
-                            <a >Admin</a>
-                        </Link>
                         <div className="seperator"></div>
 
                         { Orders.map((order, i)=>(

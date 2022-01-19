@@ -11,8 +11,8 @@ authRoute.get(
     "/google/callback",
     passport.authenticate("google", {
       failureMessage: "Cannot login to Google, please try again later!",
-      failureRedirect: "http://localhost:3000/auth/failure",
-      successRedirect: "http://localhost:3000/auth/success",
+      failureRedirect: `${process.env.NEXTAUTH_URL}/auth/failure`,
+      successRedirect: `${process.env.NEXTAUTH_URL}/auth/success`,
     }),
     (req, res) => {
       console.log("User: ", req.user);
