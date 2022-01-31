@@ -45,7 +45,7 @@ const Button = (props) => {
         setRerender(true)
     }, [])
     return ( 
-        <Button normal={props.normal ? 'true': false} onClick={props.onClick}>
+        <Button normal={props.normal ? 'true': false} onClick={props.onClick} type={props.type}>
             {props.icon}
             {props.text}
             {props.righticon}

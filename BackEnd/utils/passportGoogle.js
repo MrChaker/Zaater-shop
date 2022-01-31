@@ -11,13 +11,13 @@ passport.use(
     },
     async (req, accessToken, refreshToken, profile, cb) => {
       console.log('logging...');
-      User.find({googleId: profile.id }, async (err, data)=>{
+      User.find({oAuthID: profile.id }, async (err, data)=>{
         if ( !data || data.length == 0 ){
           const newUser = new User({
             name: `${profile.name.givenName} ${profile.name.familyName}`,
             email: profile.emails[0].value,
             image: profile.photos[0].value,
-            googleId: profile.id,
+            oAuthID: profile.id,
             isAdmin: false
           });
           console.log('saved..');

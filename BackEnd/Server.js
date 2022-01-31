@@ -1,13 +1,13 @@
 const express = require("express");
 const next = require("next");
+require('dotenv').config();
 const cors = require('cors');
-const helmet = require('helmet');
 const authRoute = require("./routes/authRoute");
 const passport = require('passport')
 const cookieSession = require("cookie-session");
+const cookieparser = require('cookie-parser');
 const Connect = require('./utils/dbConnect');
 const cloudinary = require( 'cloudinary').v2;
-
 const { ApolloServer } = require("apollo-server-express");
 const  typeDefs  = require('./schemas');
 const  resolvers  = require('./resolvers');
@@ -49,10 +49,11 @@ app
     apollo_server.applyMiddleware({app: server, path: "/api/graphql"});
     
     // Cookies for auth
+    server.use(cookieparser());
     server.use(
       cookieSession({
         maxAge: 24 * 60 * 60 * 1000 * 2,
-        keys: ['never get here'],
+        keys: [process.env.JWT_SECRET],
       })
     );
     //Passport
