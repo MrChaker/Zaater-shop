@@ -14,7 +14,7 @@ const  resolvers  = require('./resolvers');
 
 const isAdmin = require('./middleware/isAdmin');
 
-const PORT = process.env.PORT || 3000 ;
+const PORT = process.env.PORT || 8080 ;
 const dev = process.env.NODE_ENV !== 'production';
 
 const app = next({ dev });
